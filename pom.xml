@@ -80,6 +80,7 @@
     <modules>
         <module>capra-common</module>
         <module>capra-gateway</module>
+        <module>capra-auth</module>
     </modules>
 
     <build>
