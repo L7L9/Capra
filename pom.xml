@@ -13,7 +13,7 @@
 
     <groupId>com.capra</groupId>
     <artifactId>capra-parent</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>${capra.version}</version>
     <packaging>pom</packaging>
 
     <name>capra</name>
@@ -30,16 +30,13 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
     </dependencies>
 
     <properties>
         <!-- 项目配置 -->
         <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <capra.version>1.0-SNAPSHOT</capra.version>
         <!-- 外部依赖版本 -->
         <spring-cloud.version>2022.0.3</spring-cloud.version>
         <spring-cloud-alibaba.version>2022.0.0.0</spring-cloud-alibaba.version>
@@ -71,7 +68,7 @@
             <dependency>
                 <groupId>com.capra</groupId>
                 <artifactId>capra-common</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>${capra.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -81,6 +78,7 @@
         <module>capra-common</module>
         <module>capra-gateway</module>
         <module>capra-auth</module>
+        <module>capra-account</module>
     </modules>
 
     <build>
