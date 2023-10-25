@@ -1,0 +1,15 @@
+server:
+  port: 8080
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: capra-account
+          uri: lb://capra-account
+          predicates:
+            - Path=/account/**
+        - id: capra-auth
+          uri: lb://capra-auth
+          predicates:
+            - Path=/auth/**
+
