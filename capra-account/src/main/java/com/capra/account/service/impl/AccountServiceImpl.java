@@ -13,6 +13,9 @@ import com.capra.core.utils.StringUtils;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+import java.util.Optional;
+
 /**
  * 账号服务实现类
  *
@@ -29,16 +32,21 @@ public class AccountServiceImpl implements AccountService {
         if(StringUtils.isEmpty(registerDTO.getUsername()) || StringUtils.isEmpty(registerDTO.getPassword())){
             throw new ServiceException("请填写用户名/密码");
         }
+
         // 加密
         Digester digester = new Digester(DigestAlgorithm.SHA256);
         String encodePassword = digester.digestHex(registerDTO.getPassword());
 
         User user = new User();
         user.setUsername(registerDTO.getUsername()).setNickname(registerDTO.getUsername()).setPassword(encodePassword);
+
+        if(Objects.isNull(userMapper.selectByUsername(user.getUsername()))){
+            throw new ServiceException("用户名重复，请重新输入");
+        }
+
         if(userMapper.insert(user) != 1){
             throw new DaoException("数据库插入失败,请检查数据");
         }
-
         return true;
     }
 
