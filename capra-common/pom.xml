@@ -15,5 +15,6 @@
     <description>capra通用模块</description>
     <modules>
         <module>capra-common-core</module>
+        <module>capra-common-mysql</module>
     </modules>
 </project>
