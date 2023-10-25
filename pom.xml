@@ -30,6 +30,10 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
     </dependencies>
 
     <properties>
@@ -40,6 +44,9 @@
         <!-- 外部依赖版本 -->
         <spring-cloud.version>2022.0.3</spring-cloud.version>
         <spring-cloud-alibaba.version>2022.0.0.0</spring-cloud-alibaba.version>
+        <mysql-connector.version>8.0.31</mysql-connector.version>
+        <mybatis-plus-spring-boot.version>3.5.3.1</mybatis-plus-spring-boot.version>
+        <hutool.version>5.8.18</hutool.version>
         <!-- 子模块版本 -->
         <capra-common.version>1.0-SNAPSHOT</capra-common.version>
     </properties>
@@ -63,11 +70,29 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!-- MySQL驱动-->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector.version}</version>
+            </dependency>
+            <!-- Mybatis Plus-->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus-spring-boot.version}</version>
+            </dependency>
 
+            <!-- hutool工具包 -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-crypto</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
             <!-- common模块导入 -->
             <dependency>
                 <groupId>com.capra</groupId>
-                <artifactId>capra-common</artifactId>
+                <artifactId>capra-common-core</artifactId>
                 <version>${capra.version}</version>
             </dependency>
         </dependencies>
