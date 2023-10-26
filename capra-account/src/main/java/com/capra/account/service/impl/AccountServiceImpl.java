@@ -40,7 +40,7 @@ public class AccountServiceImpl implements AccountService {
         User user = new User();
         user.setUsername(registerDTO.getUsername()).setNickname(registerDTO.getUsername()).setPassword(encodePassword);
 
-        if(Objects.isNull(userMapper.selectByUsername(user.getUsername()))){
+        if(Objects.nonNull(userMapper.selectByUsername(user.getUsername()))){
             throw new ServiceException("用户名重复，请重新输入");
         }
 
