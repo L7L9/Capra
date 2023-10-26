@@ -10,6 +10,41 @@
     </parent>
 
     <artifactId>capra-auth</artifactId>
+    <description>capra认证中心,用于token管理</description>
 
-    
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+        <!-- OpenFeign依赖-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <!-- SpringBoot Web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- hutool-jwt依赖-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-jwt</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.capra</groupId>
+            <artifactId>capra-common-core</artifactId>
+            <version>${capra.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.capra</groupId>
+            <artifactId>capra-api</artifactId>
+            <version>${capra.version}</version>
+        </dependency>
+    </dependencies>
 </project>
