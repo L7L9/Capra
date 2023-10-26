@@ -32,7 +32,7 @@
         <dependency>
             <groupId>com.capra</groupId>
             <artifactId>capra-common-mysql</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${capra.version}</version>
         </dependency>
         <dependency>
             <groupId>cn.hutool</groupId>
