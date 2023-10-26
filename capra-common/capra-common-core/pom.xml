@@ -8,7 +8,7 @@
         <artifactId>capra-common</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-
+    <packaging>pom</packaging>
     <artifactId>capra-common-core</artifactId>
 
 </project>
