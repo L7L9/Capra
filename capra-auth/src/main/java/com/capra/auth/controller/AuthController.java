@@ -1,8 +1,9 @@
 package com.capra.auth.controller;
 
 import com.capra.api.domain.SysUser;
+import com.capra.api.result.RemoteResult;
 import com.capra.auth.service.TokenService;
-import com.capra.core.result.CommonResult;
+import com.capra.security.domain.MyClaims;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +22,10 @@ public class AuthController {
     private TokenService tokenService;
 
     @PostMapping("/getToken")
-    public CommonResult<String> getToken(SysUser sysUser){
-        return CommonResult.successWithDetail("获取token成功",tokenService.getToken(sysUser));
+    public RemoteResult<String> getToken(SysUser sysUser){
+        MyClaims claims = new MyClaims();
+        claims.setUserId(sysUser.getId());
+        claims.setUsername(sysUser.getUsername());
+        return RemoteResult.successWithDetail("获取token成功",tokenService.getToken(claims));
     }
 }

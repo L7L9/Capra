@@ -1,6 +1,7 @@
 package com.capra.api.client;
 
 import com.capra.api.domain.SysUser;
+import com.capra.api.result.RemoteResult;
 import com.capra.core.result.CommonResult;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,5 +21,5 @@ public interface AuthClient {
      * @return jwt
      */
     @PostMapping("/auth/getToken")
-    CommonResult<String> getToken(SysUser sysUser);
+    RemoteResult<String> getToken(SysUser sysUser);
 }
