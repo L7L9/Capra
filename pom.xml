@@ -47,6 +47,7 @@
         <mysql-connector.version>8.0.31</mysql-connector.version>
         <mybatis-plus-spring-boot.version>3.5.3.1</mybatis-plus-spring-boot.version>
         <hutool.version>5.8.18</hutool.version>
+        <hutool-jwt.version>5.8.20</hutool-jwt.version>
         <!-- 子模块版本 -->
         <capra-common.version>1.0-SNAPSHOT</capra-common.version>
     </properties>
@@ -97,7 +98,7 @@
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-jwt</artifactId>
-                <version>${hutool.version}</version>
+                <version>${hutool-jwt.version}</version>
             </dependency>
             <!-- common模块导入 -->
             <dependency>
