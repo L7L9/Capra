@@ -1,6 +1,8 @@
 package com.capra.account.controller;
 
+import com.capra.account.entity.dto.LoginDTO;
 import com.capra.account.entity.dto.RegisterDTO;
+import com.capra.account.result.response.LoginResponse;
 import com.capra.account.service.AccountService;
 import com.capra.core.result.CommonResult;
 import jakarta.annotation.Resource;
@@ -28,5 +30,10 @@ public class AccountController {
             return CommonResult.successWithMeg("注册成功");
         }
         return CommonResult.fail();
+    }
+
+    @PostMapping("/login")
+    public CommonResult<LoginResponse> login(@Validated @RequestBody LoginDTO loginDTO){
+        return CommonResult.successWithDetail("登录成功",accountService.login(loginDTO));
     }
 }
