@@ -31,11 +31,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <!-- hutool-jwt依赖-->
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-jwt</artifactId>
-        </dependency>
         <dependency>
             <groupId>com.capra</groupId>
             <artifactId>capra-common-core</artifactId>
@@ -44,6 +39,11 @@
         <dependency>
             <groupId>com.capra</groupId>
             <artifactId>capra-api</artifactId>
+            <version>${capra.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.capra</groupId>
+            <artifactId>capra-common-security</artifactId>
             <version>${capra.version}</version>
         </dependency>
     </dependencies>
