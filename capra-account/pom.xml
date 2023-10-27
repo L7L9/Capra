@@ -42,5 +42,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.capra</groupId>
+            <artifactId>capra-api</artifactId>
+            <version>${capra.version}</version>
+        </dependency>
     </dependencies>
 </project>
