@@ -1,6 +1,7 @@
 package com.capra.core.result;
 
 import com.capra.core.constant.ResultConstant;
+import lombok.Data;
 import org.apache.logging.log4j.util.Strings;
 
 import java.io.Serializable;
@@ -9,6 +10,7 @@ import java.io.Serializable;
  * @author lql
  * @date 2023/10/23
  */
+@Data
 public class CommonResult<T> implements Serializable {
     /**
      * 状态码
@@ -61,29 +63,5 @@ public class CommonResult<T> implements Serializable {
 
     public static <T> CommonResult<T> failWithDetail(String message,T data){
         return new CommonResult<>(ResultConstant.FAILED_CODE,message,data);
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
     }
 }
