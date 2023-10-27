@@ -6,7 +6,11 @@ import com.capra.account.entity.dto.LoginDTO;
 import com.capra.account.entity.dto.RegisterDTO;
 import com.capra.account.entity.po.User;
 import com.capra.account.mapper.UserMapper;
+import com.capra.account.result.response.LoginResponse;
 import com.capra.account.service.AccountService;
+import com.capra.api.client.AuthClient;
+import com.capra.api.domain.SysUser;
+import com.capra.api.result.RemoteResult;
 import com.capra.core.exception.DaoException;
 import com.capra.core.exception.ServiceException;
 import com.capra.core.utils.StringUtils;
@@ -24,6 +28,9 @@ import java.util.Optional;
  */
 @Service
 public class AccountServiceImpl implements AccountService {
+    @Resource
+    private AuthClient authClient;
+
     @Resource
     private UserMapper userMapper;
 
@@ -51,9 +58,28 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public boolean login(LoginDTO loginDTO) {
+    public LoginResponse login(LoginDTO loginDTO) {
+        User user = userMapper.selectByUsername(loginDTO.getUsername());
 
+        if(Objects.isNull(user)){
+            throw new ServiceException("该用户不存在");
+        }
+        // 判断密码
+        Digester digester = new Digester(DigestAlgorithm.SHA256);
+        String encodePassword = digester.digestHex(loginDTO.getPassword());
+        if(!encodePassword.equals(user.getPassword())){
+            throw new ServiceException("用户密码错误,请检查账号或者密码");
+        }
+        // 生成jwt -> 调用
+        SysUser sysUser = new SysUser();
+        sysUser.setId(user.getId());
+        sysUser.setUsername(user.getUsername());
+        RemoteResult<String> result = authClient.getToken(sysUser);
 
-        return true;
+        LoginResponse response = new LoginResponse();
+        response.setUser(user);
+        response.setToken(result.getData());
+        // 设置返回响应
+        return response;
     }
 }

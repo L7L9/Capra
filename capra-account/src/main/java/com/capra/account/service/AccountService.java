@@ -2,6 +2,7 @@ package com.capra.account.service;
 
 import com.capra.account.entity.dto.LoginDTO;
 import com.capra.account.entity.dto.RegisterDTO;
+import com.capra.account.result.response.LoginResponse;
 
 /**
  * 账号服务接口
@@ -21,7 +22,7 @@ public interface AccountService {
      * 登录
      *
      * @param loginDTO 登录dto
-     * @return boolean 登录成功返回true
+     * @return LoginResponse 登录返回消息
      */
-    boolean login(LoginDTO loginDTO);
+    LoginResponse login(LoginDTO loginDTO);
 }
