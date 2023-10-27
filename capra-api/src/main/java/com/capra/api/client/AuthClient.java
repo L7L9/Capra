@@ -19,6 +19,6 @@ public interface AuthClient {
      * @param sysUser 存于jwt的用户信息
      * @return jwt
      */
-    @PostMapping("getToken")
+    @PostMapping("/auth/getToken")
     CommonResult<String> getToken(SysUser sysUser);
 }
