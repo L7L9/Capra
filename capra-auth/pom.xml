@@ -17,10 +17,6 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-        </dependency>
         <!-- OpenFeign依赖-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -34,17 +30,14 @@
         <dependency>
             <groupId>com.capra</groupId>
             <artifactId>capra-common-core</artifactId>
-            <version>${capra.version}</version>
         </dependency>
         <dependency>
             <groupId>com.capra</groupId>
             <artifactId>capra-api</artifactId>
-            <version>${capra.version}</version>
         </dependency>
         <dependency>
             <groupId>com.capra</groupId>
             <artifactId>capra-common-security</artifactId>
-            <version>${capra.version}</version>
         </dependency>
     </dependencies>
 </project>

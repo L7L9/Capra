@@ -32,7 +32,6 @@
         <dependency>
             <groupId>com.capra</groupId>
             <artifactId>capra-common-mysql</artifactId>
-            <version>${capra.version}</version>
         </dependency>
         <dependency>
             <groupId>cn.hutool</groupId>
@@ -45,7 +44,6 @@
         <dependency>
             <groupId>com.capra</groupId>
             <artifactId>capra-api</artifactId>
-            <version>${capra.version}</version>
         </dependency>
     </dependencies>
 </project>

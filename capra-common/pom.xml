@@ -19,10 +19,4 @@
         <module>capra-common-mysql</module>
         <module>capra-common-security</module>
     </modules>
-    <dependencies>
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-jwt</artifactId>
-        </dependency>
-    </dependencies>
 </project>
