@@ -2,7 +2,6 @@ package com.capra.api.client;
 
 import com.capra.api.domain.SysUser;
 import com.capra.api.result.RemoteResult;
-import com.capra.core.result.CommonResult;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 
