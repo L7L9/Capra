@@ -13,7 +13,7 @@
 
     <groupId>com.capra</groupId>
     <artifactId>capra-parent</artifactId>
-    <version>${capra.version}</version>
+    <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>capra</name>
@@ -33,6 +33,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
         </dependency>
     </dependencies>
 
@@ -40,7 +41,6 @@
         <!-- 项目配置 -->
         <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <capra.version>1.0-SNAPSHOT</capra.version>
         <!-- 外部依赖版本 -->
         <spring-cloud.version>2022.0.3</spring-cloud.version>
         <spring-cloud-alibaba.version>2022.0.0.0</spring-cloud-alibaba.version>
@@ -48,8 +48,7 @@
         <mybatis-plus-spring-boot.version>3.5.3.1</mybatis-plus-spring-boot.version>
         <hutool.version>5.8.18</hutool.version>
         <hutool-jwt.version>5.8.20</hutool-jwt.version>
-        <!-- 子模块版本 -->
-        <capra-common.version>1.0-SNAPSHOT</capra-common.version>
+        <lombok.version>1.18.26</lombok.version>
     </properties>
 
     <!-- 父项目管理依赖版本-->
@@ -104,7 +103,23 @@
             <dependency>
                 <groupId>com.capra</groupId>
                 <artifactId>capra-common-core</artifactId>
-                <version>${capra.version}</version>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.capra</groupId>
+                <artifactId>capra-common-security</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.capra</groupId>
+                <artifactId>capra-common-mysql</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- capra-api模块-->
+            <dependency>
+                <groupId>com.capra</groupId>
+                <artifactId>capra-api</artifactId>
+                <version>${project.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
