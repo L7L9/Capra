@@ -2,7 +2,7 @@ package com.capra.security.utils;
 
 import cn.hutool.jwt.JWT;
 import com.capra.security.constant.JwtConstant;
-import com.capra.security.domain.MyClaims;
+import com.capra.security.domain.CommonClaims;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -21,17 +21,15 @@ public class JwtUtils {
      *
      * @return token
      */
-    public String createToken(MyClaims claims){
+    public String createToken(CommonClaims claims){
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
         JWT jwt = new JWT();
-        jwt.setPayload(JwtConstant.CLAIM_ID,claims.getUserId())
+        return jwt.setPayload(JwtConstant.CLAIM_ID,claims.getUserId())
                 .setPayload(JwtConstant.CLAIM_NAME,claims.getUsername())
                 .setIssuer(JwtConstant.ISSUER)
                 .setKey(key)
                 .setIssuedAt(calendar.getTime())
                 .sign();
-
-        return "";
     }
 }

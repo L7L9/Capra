@@ -1,6 +1,6 @@
 package com.capra.auth.service;
 
-import com.capra.security.domain.MyClaims;
+import com.capra.security.domain.CommonClaims;
 
 /**
  * token服务
@@ -15,5 +15,5 @@ public interface TokenService {
      * @param claims 存于preload中的用户信息
      * @return token jwt
      */
-    String getToken(MyClaims claims);
+    String getToken(CommonClaims claims);
 }

@@ -9,7 +9,7 @@ import lombok.Data;
  * @date 2023/10/27
  */
 @Data
-public class MyClaims {
+public class CommonClaims {
     private Long userId;
 
     private String username;
