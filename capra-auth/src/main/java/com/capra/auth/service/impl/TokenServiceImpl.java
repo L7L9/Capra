@@ -1,8 +1,8 @@
 package com.capra.auth.service.impl;
 
 import com.capra.auth.service.TokenService;
-import com.capra.security.domain.CommonClaims;
-import com.capra.security.utils.JwtUtils;
+import com.capra.core.domain.CommonClaims;
+import com.capra.core.utils.JwtUtils;
 import org.springframework.stereotype.Service;
 
 /**

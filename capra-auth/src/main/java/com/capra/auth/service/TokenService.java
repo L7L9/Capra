@@ -1,6 +1,7 @@
 package com.capra.auth.service;
 
-import com.capra.security.domain.CommonClaims;
+
+import com.capra.core.domain.CommonClaims;
 
 /**
  * token服务

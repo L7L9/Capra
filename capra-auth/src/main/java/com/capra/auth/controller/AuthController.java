@@ -3,7 +3,7 @@ package com.capra.auth.controller;
 import com.capra.api.domain.SysUser;
 import com.capra.api.result.RemoteResult;
 import com.capra.auth.service.TokenService;
-import com.capra.security.domain.CommonClaims;
+import com.capra.core.domain.CommonClaims;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -11,4 +11,11 @@
     <packaging>pom</packaging>
     <artifactId>capra-common-core</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-jwt</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>
