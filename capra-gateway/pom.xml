@@ -47,5 +47,9 @@
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.capra</groupId>
+            <artifactId>capra-common-core</artifactId>
+        </dependency>
     </dependencies>
 </project>
