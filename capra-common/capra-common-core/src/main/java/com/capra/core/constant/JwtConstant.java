@@ -10,7 +10,7 @@ public class JwtConstant {
     /**
      * 密钥
      */
-    public final static String KEY = "gdut_topview_capra_lql";
+    public final static byte[] KEY = "gdut_topview_capra_lql".getBytes();
 
     /**
      * 发行者
