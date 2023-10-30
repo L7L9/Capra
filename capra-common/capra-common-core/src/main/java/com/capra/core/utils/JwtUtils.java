@@ -15,14 +15,12 @@ import com.capra.core.domain.CommonClaims;
  * @date 2023/10/27
  */
 public class JwtUtils {
-    private final static byte[] KEY = JwtConstant.KEY.getBytes();
-
     /**
      * 生成token
      *
      * @return token
      */
-    public String createToken(CommonClaims claims){
+    public static String createToken(CommonClaims claims){
         DateTime date = DateUtil.date();
 
         JWT jwt = new JWT();
@@ -30,10 +28,21 @@ public class JwtUtils {
                 .setPayload(JwtConstant.CLAIM_ID,claims.getUserId())
                 .setPayload(JwtConstant.CLAIM_NAME,claims.getUsername())
                 .setIssuer(JwtConstant.ISSUER)
-                .setKey(KEY)
+                .setKey(JwtConstant.KEY)
                 .setIssuedAt(date)
                 .setExpiresAt(DateUtil.offset(date, DateField.SECOND, JwtConstant.DURATION))
                 .sign();
+    }
+
+    /**
+     * 用于外部检查token有效性
+     *
+     * @param token 用户token
+     * @return boolean 有效返回true,否则false
+     */
+    public static boolean checkToken(String token){
+        JWT jwt = JWT.of(token).setKey(JwtConstant.KEY);
+        return jwt.validate(JwtConstant.DURATION);
     }
 
     /**
@@ -42,8 +51,8 @@ public class JwtUtils {
      * @param token 用户token
      * @return 用户id
      */
-    public String getUserId(String token){
-        JWT jwt = JWT.of(token).setKey(KEY);
+    public static String getUserId(String token){
+        JWT jwt = JWT.of(token).setKey(JwtConstant.KEY);
         if(!jwt.validate(JwtConstant.DURATION)){
             throw new JWTException("token无效或者过期");
         }
@@ -56,8 +65,8 @@ public class JwtUtils {
      * @param token 用户token
      * @return 用户id
      */
-    public String getUsername(String token){
-        JWT jwt = JWT.of(token).setKey(KEY);
+    public static String getUsername(String token){
+        JWT jwt = JWT.of(token).setKey(JwtConstant.KEY);
         if(!jwt.validate(JwtConstant.DURATION)){
             throw new JWTException("token无效或者过期");
         }
