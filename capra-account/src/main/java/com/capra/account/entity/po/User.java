@@ -23,11 +23,6 @@ public class User {
     private Long id;
 
     /**
-     * 全局唯一标识
-     */
-    private String uuid;
-
-    /**
      * 账户名称
      */
     private String username;
