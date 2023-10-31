@@ -6,7 +6,7 @@ package com.capra.api.constant;
  * @author lql
  * @date 2023/10/27
  */
-public class ResultConstant {
+public class RemoteResultConstant {
     public static final int SUCCESS = 100;
 
     public static final int FAILED = 400;

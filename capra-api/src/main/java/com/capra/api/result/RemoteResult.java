@@ -1,6 +1,6 @@
 package com.capra.api.result;
 
-import com.capra.api.constant.ResultConstant;
+import com.capra.api.constant.RemoteResultConstant;
 import lombok.Data;
 import org.apache.logging.log4j.util.Strings;
 
@@ -36,34 +36,34 @@ public class RemoteResult<T> implements Serializable {
     }
 
     public static <T> RemoteResult<T> success(){
-        return new RemoteResult<>(ResultConstant.SUCCESS, Strings.EMPTY,null);
+        return new RemoteResult<>(RemoteResultConstant.SUCCESS, Strings.EMPTY,null);
     }
 
     public static <T> RemoteResult<T> successWithMeg(String message){
-        return new RemoteResult<>(ResultConstant.SUCCESS,message,null);
+        return new RemoteResult<>(RemoteResultConstant.SUCCESS,message,null);
     }
 
     public static <T> RemoteResult<T> successWithData(T data){
-        return new RemoteResult<>(ResultConstant.SUCCESS,Strings.EMPTY,data);
+        return new RemoteResult<>(RemoteResultConstant.SUCCESS,Strings.EMPTY,data);
     }
 
     public static <T> RemoteResult<T> successWithDetail(String message,T data){
-        return new RemoteResult<>(ResultConstant.SUCCESS,message,data);
+        return new RemoteResult<>(RemoteResultConstant.SUCCESS,message,data);
     }
 
     public static <T> RemoteResult<T> fail(){
-        return new RemoteResult<>(ResultConstant.FAILED,Strings.EMPTY,null);
+        return new RemoteResult<>(RemoteResultConstant.FAILED,Strings.EMPTY,null);
     }
 
     public static <T> RemoteResult<T> failWithMsg(String message){
-        return new RemoteResult<>(ResultConstant.FAILED,message,null);
+        return new RemoteResult<>(RemoteResultConstant.FAILED,message,null);
     }
 
     public static <T> RemoteResult<T> failWithData(T data){
-        return new RemoteResult<>(ResultConstant.FAILED,Strings.EMPTY,data);
+        return new RemoteResult<>(RemoteResultConstant.FAILED,Strings.EMPTY,data);
     }
 
     public static <T> RemoteResult<T> failWithDetail(String message,T data){
-        return new RemoteResult<>(ResultConstant.FAILED,message,data);
+        return new RemoteResult<>(RemoteResultConstant.FAILED,message,data);
     }
 }
