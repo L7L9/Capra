@@ -1,28 +1,26 @@
 package com.capra.account.service;
 
-import com.capra.account.entity.dto.LoginDTO;
-import com.capra.account.entity.dto.RegisterDTO;
-import com.capra.account.result.response.LoginResponse;
+import com.capra.account.domain.po.User;
+import com.capra.api.domain.request.RegisterRequest;
 
 /**
- * 账号服务接口
+ *
  * @author lql
- * @date 2023/10/24
+ * @date 2023/10/31
  */
 public interface AccountService {
     /**
-     * 注册
-     *
-     * @param registerDTO 注册dto
-     * @return boolean 注册成功返回true
+     * 获取用户信息
+     * @param username 用户名
+     * @return 用户po
      */
-    boolean register(RegisterDTO registerDTO);
+    User getUserInfo(String username);
 
     /**
-     * 登录
+     * 注册用户信息到数据库
      *
-     * @param loginDTO 登录dto
-     * @return LoginResponse 登录返回消息
+     * @param registerRequest 注册请求
+     * @return 成功返回true
      */
-    LoginResponse login(LoginDTO loginDTO);
+    boolean register(RegisterRequest registerRequest);
 }

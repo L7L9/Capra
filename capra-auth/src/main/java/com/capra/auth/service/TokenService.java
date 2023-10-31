@@ -1,7 +1,8 @@
 package com.capra.auth.service;
 
 
-import com.capra.core.domain.CommonClaims;
+import com.capra.auth.domain.bo.LoginBO;
+import com.capra.auth.domain.bo.RegisterBO;
 
 /**
  * token服务
@@ -11,10 +12,18 @@ import com.capra.core.domain.CommonClaims;
  */
 public interface TokenService {
     /**
-     * 获取token
+     * 登录并且获取token
      *
-     * @param claims 存于preload中的用户信息
-     * @return token jwt
+     * @param loginBO 登录bo类
+     * @return token
      */
-    String getToken(CommonClaims claims);
+    String login(LoginBO loginBO);
+
+    /**
+     * 注册用户
+     *
+     * @param registerBO 注册bo类
+     * @return 成功返回true
+     */
+    Boolean register(RegisterBO registerBO);
 }

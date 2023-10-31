@@ -1,16 +1,15 @@
 package com.capra.account.controller;
 
-import com.capra.account.entity.dto.LoginDTO;
-import com.capra.account.entity.dto.RegisterDTO;
-import com.capra.account.result.response.LoginResponse;
+import com.capra.account.domain.po.User;
 import com.capra.account.service.AccountService;
-import com.capra.core.result.CommonResult;
+import com.capra.api.annotation.InnerCall;
+import com.capra.api.domain.request.RegisterRequest;
+import com.capra.api.domain.response.LoginResponse;
+import com.capra.api.result.RemoteResult;
 import jakarta.annotation.Resource;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Objects;
 
 /**
  * 账户controller
@@ -24,16 +23,29 @@ public class AccountController {
     @Resource
     private AccountService accountService;
 
-    @PostMapping("/register")
-    public CommonResult<?> register(@Validated @RequestBody RegisterDTO registerDTO){
-        if(accountService.register(registerDTO)){
-            return CommonResult.successWithMeg("注册成功");
+    /**
+     * 获取需要认证的用户信息
+     *
+     * @param username 用户名
+     * @return 返回需要认证的用户信息
+     */
+    @InnerCall
+    @PostMapping("/info/{username}")
+    public RemoteResult<LoginResponse> getAuthUserMessage(@PathVariable String username){
+        User userInfo = accountService.getUserInfo(username);
+        if(Objects.isNull(userInfo)){
+            return RemoteResult.successWithMeg("用户不存在");
         }
-        return CommonResult.fail();
+        return RemoteResult.successWithData(new LoginResponse()
+                .setId(userInfo.getId())
+                .setUsername(userInfo.getUsername())
+                .setPassword(userInfo.getPassword())
+                .setStatus(userInfo.getStatus()));
     }
 
-    @PostMapping("/login")
-    public CommonResult<LoginResponse> login(@Validated @RequestBody LoginDTO loginDTO){
-        return CommonResult.successWithDetail("登录成功",accountService.login(loginDTO));
+    @InnerCall
+    @PostMapping("/register")
+    public RemoteResult<Boolean> register(@RequestBody RegisterRequest registerRequest){
+        return RemoteResult.successWithData(accountService.register(registerRequest));
     }
 }
