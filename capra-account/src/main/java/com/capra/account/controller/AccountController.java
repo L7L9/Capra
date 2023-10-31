@@ -1,11 +1,13 @@
 package com.capra.account.controller;
 
 import com.capra.account.domain.po.User;
+import com.capra.account.domain.vo.UserMessageVO;
 import com.capra.account.service.AccountService;
 import com.capra.api.annotation.InnerCall;
 import com.capra.api.domain.request.RegisterRequest;
 import com.capra.api.domain.response.LoginResponse;
 import com.capra.api.result.RemoteResult;
+import com.capra.core.result.CommonResult;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,8 +26,17 @@ public class AccountController {
     private AccountService accountService;
 
     /**
+     * 获取用户信息
+     * @param id 用户id
+     * @return 用户信息
+     */
+    @GetMapping("/{id}")
+    public CommonResult<UserMessageVO> getUserMessage(@PathVariable Long id){
+        return CommonResult.successWithData(accountService.getUserMessage(id));
+    }
+
+    /**
      * 获取需要认证的用户信息
-     *
      * @param username 用户名
      * @return 返回需要认证的用户信息
      */
@@ -43,6 +54,11 @@ public class AccountController {
                 .setStatus(userInfo.getStatus()));
     }
 
+    /**
+     * 注册用户信息到数据库
+     * @param registerRequest 注册请求
+     * @return 成功返回true
+     */
     @InnerCall
     @PostMapping("/register")
     public RemoteResult<Boolean> register(@RequestBody RegisterRequest registerRequest){
