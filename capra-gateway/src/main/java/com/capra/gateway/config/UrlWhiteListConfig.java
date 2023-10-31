@@ -20,4 +20,6 @@ import java.util.List;
 @ConfigurationProperties(prefix="security.ignore")
 public class UrlWhiteListConfig {
     private List<String> urls;
+
+    private final int initialLength = urls.size();
 }
