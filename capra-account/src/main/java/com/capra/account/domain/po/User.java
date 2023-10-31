@@ -1,4 +1,4 @@
-package com.capra.account.entity.po;
+package com.capra.account.domain.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;

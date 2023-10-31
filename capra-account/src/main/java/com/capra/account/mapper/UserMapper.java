@@ -2,7 +2,7 @@ package com.capra.account.mapper;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.capra.account.entity.po.User;
+import com.capra.account.domain.po.User;
 
 /**
  * @author lql
