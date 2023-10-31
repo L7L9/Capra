@@ -1,6 +1,7 @@
 package com.capra.account.service;
 
 import com.capra.account.domain.po.User;
+import com.capra.account.domain.vo.UserMessageVO;
 import com.capra.api.domain.request.RegisterRequest;
 
 /**
@@ -23,4 +24,11 @@ public interface AccountService {
      * @return 成功返回true
      */
     boolean register(RegisterRequest registerRequest);
+
+    /**
+     * 获取用户展示信息
+     * @param id 用户id
+     * @return 展示用户信息vo类
+     */
+    UserMessageVO getUserMessage(Long id);
 }

@@ -1,10 +1,12 @@
 package com.capra.account.service.impl;
 
 import com.capra.account.domain.po.User;
+import com.capra.account.domain.vo.UserMessageVO;
 import com.capra.account.mapper.UserMapper;
 import com.capra.account.service.AccountService;
 import com.capra.api.domain.request.RegisterRequest;
 import com.capra.core.exception.DaoException;
+import com.capra.core.exception.SystemException;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -39,5 +41,24 @@ public class AccountServiceImpl implements AccountService {
         }
 
         return true;
+    }
+
+    @Override
+    public UserMessageVO getUserMessage(Long id) {
+        User user = userMapper.selectById(id);
+        if(Objects.isNull(user)){
+            throw new SystemException("查询不到用户,用户id存在异常");
+        }
+
+        return new UserMessageVO()
+                .setId(user.getId())
+                .setUsername(user.getUsername())
+                .setNickname(user.getNickname())
+                .setHeadImg(user.getHeadImg())
+                .setDescription(user.getDescription())
+                .setPoints(user.getPoints())
+                .setArticleCount(user.getArticleCount())
+                .setFansCount(user.getFansCount())
+                .setFollowCount(user.getFollowCount());
     }
 }
