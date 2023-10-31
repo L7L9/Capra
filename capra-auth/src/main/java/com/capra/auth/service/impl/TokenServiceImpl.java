@@ -72,7 +72,7 @@ public class TokenServiceImpl implements TokenService {
         }
 
         // 判断长度
-        if (!StringUtils.lenBetween(registerBO.getUsername(), 4,10) || !StringUtils.lenBetween(registerBO.getPassword(), 8,20)){
+        if (!StringUtils.lenBetween(registerBO.getUsername(), 2,20) || !StringUtils.lenBetween(registerBO.getPassword(), 8,20)){
             throw new ServiceException("用户名或密码的长度错误,请重新输入");
         }
 
