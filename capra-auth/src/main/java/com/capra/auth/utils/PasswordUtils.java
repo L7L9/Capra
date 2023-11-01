@@ -1,7 +1,6 @@
 package com.capra.auth.utils;
 
-import cn.hutool.crypto.digest.DigestAlgorithm;
-import cn.hutool.crypto.digest.Digester;
+import cn.hutool.crypto.digest.BCrypt;
 
 /**
  * 针对密码的工具类，统一规范
@@ -16,23 +15,13 @@ public class PasswordUtils {
     private static final String SALT = "cross the bridge when you come to it";
 
     /**
-     * 加密工具（sha256算法）
-     */
-    private static final Digester DIGESTER = new Digester(DigestAlgorithm.SHA256);
-
-    /**
-     * 密码中间分割值,辅助插入SALT
-     */
-    private static final int MIDDLE = 6;
-
-    /**
      * 加密
      *
      * @param password 密码
      * @return 返回加密后的密码
      */
     public static String encrypt(String password){
-        return DIGESTER.digestHex(password.substring(0,MIDDLE) + SALT + password.substring(MIDDLE));
+        return BCrypt.hashpw(password + SALT);
     }
 
     /**
@@ -43,6 +32,6 @@ public class PasswordUtils {
      * @return boolean 相同返回true;否则返回false
      */
     public static boolean compare(String password,String source){
-        return encrypt(password).equals(source);
+        return BCrypt.checkpw(password + SALT,source);
     }
 }
