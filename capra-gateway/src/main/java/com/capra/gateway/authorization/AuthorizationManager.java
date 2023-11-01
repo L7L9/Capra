@@ -35,7 +35,7 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
         // 因为是热更新,规定配置中热更新在尾部添加,因此从列表的尾部开始检测
         String url = request.getURI().getPath();
         List<String> urls = urlWhiteListConfig.getUrls();
-        for(int i = urls.size() - 1;i >= urlWhiteListConfig.getInitialLength();i--){
+        for(int i = urls.size() - 1;i >= 0;i--){
             if (urls.get(i).equals(url)){
                 return Mono.just(new AuthorizationDecision((true)));
             }
