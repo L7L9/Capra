@@ -1,4 +1,4 @@
-package com.capra.gateway.constant;
+package com.capra.core.constant;
 
 /**
  * 请求头常量

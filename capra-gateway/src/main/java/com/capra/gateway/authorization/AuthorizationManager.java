@@ -2,7 +2,7 @@ package com.capra.gateway.authorization;
 
 import com.capra.core.utils.JwtUtils;
 import com.capra.gateway.config.UrlWhiteListConfig;
-import com.capra.gateway.constant.HeaderConstant;
+import com.capra.core.constant.HeaderConstant;
 import jakarta.annotation.Resource;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.security.authorization.AuthorizationDecision;
