@@ -51,12 +51,12 @@ public class JwtUtils {
      * @param token 用户token
      * @return 用户id
      */
-    public static String getUserId(String token){
+    public static Long getUserId(String token){
         JWT jwt = JWT.of(token).setKey(JwtConstant.KEY);
         if(!jwt.validate(JwtConstant.DURATION)){
             throw new JWTException("token无效或者过期");
         }
-        return (String) jwt.getPayload(JwtConstant.CLAIM_ID);
+        return (Long) jwt.getPayload(JwtConstant.CLAIM_ID);
     }
 
     /**
