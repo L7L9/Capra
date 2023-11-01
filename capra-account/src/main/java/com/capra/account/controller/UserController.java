@@ -41,7 +41,11 @@ public class UserController {
         return CommonResult.successWithData(accountService.getUserMessage(id));
     }
 
-    @GetMapping("/centre")
+    /**
+     * 获取登录用户的全部信息
+     * @return 返回登录用户全部信息
+     */
+    @GetMapping("/center")
     public CommonResult<User> getUserMessage(){
         Long userId = JwtUtils.getUserId(request.getHeader(HeaderConstant.TOKEN_HEADER));
         return CommonResult.successWithData(accountService.getUserInfo(userId));
