@@ -10,7 +10,10 @@ import java.util.Objects;
  */
 
 public class StringUtils {
-    private final static String EMPTY = "";
+    /**
+     * 空字符串
+     */
+    public final static String EMPTY = "";
 
     /**
      * 判断是否为空字符串
@@ -38,9 +41,6 @@ public class StringUtils {
             throw new RuntimeException("参数越界");
         }
         int length = s.length();
-        if(length >= min && length <= max){
-            return true;
-        }
-        return false;
+        return length >= min && length <= max;
     }
 }
