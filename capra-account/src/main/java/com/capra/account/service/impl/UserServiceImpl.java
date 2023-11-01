@@ -12,6 +12,7 @@ import com.capra.api.domain.request.RegisterRequest;
 import com.capra.core.exception.DaoException;
 import com.capra.core.exception.ServiceException;
 import com.capra.core.exception.SystemException;
+import com.capra.core.utils.StringUtils;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -41,7 +42,8 @@ public class UserServiceImpl implements UserService {
         User user = new User()
                 .setUsername(registerRequest.getUsername())
                 .setNickname(registerRequest.getUsername())
-                .setPassword(registerRequest.getPassword());
+                .setPassword(registerRequest.getPassword())
+                .setHeadImg(StringUtils.EMPTY);
         if(userMapper.insert(user) != 1){
             throw new DaoException("数据库插入失败");
         }
