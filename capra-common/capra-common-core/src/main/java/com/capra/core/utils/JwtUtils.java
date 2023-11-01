@@ -1,5 +1,6 @@
 package com.capra.core.utils;
 
+import cn.hutool.core.convert.Convert;
 import cn.hutool.core.date.DateField;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
@@ -15,6 +16,8 @@ import com.capra.core.domain.CommonClaims;
  * @date 2023/10/27
  */
 public class JwtUtils {
+    private final static DateTime NOT_BEFORE_TIME = DateUtil.date();
+
     /**
      * 生成token
      *
@@ -30,6 +33,7 @@ public class JwtUtils {
                 .setIssuer(JwtConstant.ISSUER)
                 .setKey(JwtConstant.KEY)
                 .setIssuedAt(date)
+                .setNotBefore(NOT_BEFORE_TIME)
                 .setExpiresAt(DateUtil.offset(date, DateField.SECOND, JwtConstant.DURATION))
                 .sign();
     }
@@ -56,7 +60,7 @@ public class JwtUtils {
         if(!jwt.validate(JwtConstant.DURATION)){
             throw new JWTException("token无效或者过期");
         }
-        return (Long) jwt.getPayload(JwtConstant.CLAIM_ID);
+        return Convert.convert(Long.class,jwt.getPayload(JwtConstant.CLAIM_ID));
     }
 
     /**
@@ -70,6 +74,6 @@ public class JwtUtils {
         if(!jwt.validate(JwtConstant.DURATION)){
             throw new JWTException("token无效或者过期");
         }
-        return (String) jwt.getPayload(JwtConstant.CLAIM_NAME);
+        return Convert.convert(String.class,jwt.getPayload(JwtConstant.CLAIM_NAME));
     }
 }
