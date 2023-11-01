@@ -20,6 +20,9 @@ public class PasswordUtils {
      */
     private static final Digester DIGESTER = new Digester(DigestAlgorithm.SHA256);
 
+    /**
+     * 密码中间分割值,辅助插入SALT
+     */
     private static final int MIDDLE = 6;
 
     /**
