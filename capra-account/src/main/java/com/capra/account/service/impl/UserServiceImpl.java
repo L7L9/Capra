@@ -3,7 +3,7 @@ package com.capra.account.service.impl;
 import com.capra.account.domain.po.User;
 import com.capra.account.domain.vo.UserMessageVO;
 import com.capra.account.mapper.UserMapper;
-import com.capra.account.service.AccountService;
+import com.capra.account.service.UserService;
 import com.capra.api.domain.request.RegisterRequest;
 import com.capra.core.exception.DaoException;
 import com.capra.core.exception.SystemException;
@@ -17,7 +17,7 @@ import java.util.Objects;
  * @date 2023/10/31
  */
 @Service
-public class AccountServiceImpl implements AccountService {
+public class UserServiceImpl implements UserService {
     @Resource
     private UserMapper userMapper;
 
@@ -60,5 +60,14 @@ public class AccountServiceImpl implements AccountService {
                 .setArticleCount(user.getArticleCount())
                 .setFansCount(user.getFansCount())
                 .setFollowCount(user.getFollowCount());
+    }
+
+    @Override
+    public User getUserInfo(Long id) {
+        User user = userMapper.selectById(id);
+        if(Objects.isNull(user)){
+            throw new SystemException("查询不到用户,用户id存在异常");
+        }
+        return user;
     }
 }

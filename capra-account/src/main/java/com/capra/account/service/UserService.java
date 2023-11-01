@@ -9,7 +9,7 @@ import com.capra.api.domain.request.RegisterRequest;
  * @author lql
  * @date 2023/10/31
  */
-public interface AccountService {
+public interface UserService {
     /**
      * 获取用户信息
      * @param username 用户名
@@ -31,4 +31,11 @@ public interface AccountService {
      * @return 展示用户信息vo类
      */
     UserMessageVO getUserMessage(Long id);
+
+    /**
+     * 获取用户全部信息
+     * @param id 用户id
+     * @return 用户po
+     */
+    User getUserInfo(Long id);
 }

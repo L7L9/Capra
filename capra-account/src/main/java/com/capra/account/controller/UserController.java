@@ -2,13 +2,16 @@ package com.capra.account.controller;
 
 import com.capra.account.domain.po.User;
 import com.capra.account.domain.vo.UserMessageVO;
-import com.capra.account.service.AccountService;
+import com.capra.account.service.UserService;
 import com.capra.api.annotation.InnerCall;
 import com.capra.api.domain.request.RegisterRequest;
 import com.capra.api.domain.response.LoginResponse;
 import com.capra.api.result.RemoteResult;
+import com.capra.core.constant.HeaderConstant;
 import com.capra.core.result.CommonResult;
+import com.capra.core.utils.JwtUtils;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
@@ -20,10 +23,13 @@ import java.util.Objects;
  * @date 2023/10/24
  */
 @RestController
-@RequestMapping("account")
-public class AccountController {
+@RequestMapping("user")
+public class UserController {
     @Resource
-    private AccountService accountService;
+    private UserService accountService;
+
+    @Resource
+    private HttpServletRequest request;
 
     /**
      * 获取用户信息
@@ -35,13 +41,19 @@ public class AccountController {
         return CommonResult.successWithData(accountService.getUserMessage(id));
     }
 
+    @GetMapping("/centre")
+    public CommonResult<User> getUserMessage(){
+        Long userId = JwtUtils.getUserId(request.getHeader(HeaderConstant.TOKEN_HEADER));
+        return CommonResult.successWithData(accountService.getUserInfo(userId));
+    }
+
     /**
      * 获取需要认证的用户信息
      * @param username 用户名
      * @return 返回需要认证的用户信息
      */
     @InnerCall
-    @PostMapping("/info/{username}")
+    @GetMapping("/info/{username}")
     public RemoteResult<LoginResponse> getAuthUserMessage(@PathVariable String username){
         User userInfo = accountService.getUserInfo(username);
         if(Objects.isNull(userInfo)){

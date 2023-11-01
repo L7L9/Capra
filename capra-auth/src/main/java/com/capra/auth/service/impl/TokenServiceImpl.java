@@ -1,6 +1,6 @@
 package com.capra.auth.service.impl;
 
-import com.capra.api.client.AccountClient;
+import com.capra.api.client.UserClient;
 import com.capra.api.domain.request.RegisterRequest;
 import com.capra.api.domain.response.LoginResponse;
 import com.capra.api.result.RemoteResult;
@@ -26,7 +26,7 @@ import java.util.Objects;
 @Service
 public class TokenServiceImpl implements TokenService {
     @Resource
-    private AccountClient accountClient;
+    private UserClient userClient;
 
     @Override
     public String login(LoginBO loginBO) {
@@ -36,7 +36,7 @@ public class TokenServiceImpl implements TokenService {
         }
 
         // 获取用户信息
-        RemoteResult<LoginResponse> authUserMessage = accountClient.getAuthUserMessage(loginBO.getUsername());
+        RemoteResult<LoginResponse> authUserMessage = userClient.getAuthUserMessage(loginBO.getUsername());
         // 判断用户是否存在
         if(Objects.isNull(authUserMessage.getData())){
             throw new ServiceException(authUserMessage.getMessage());
@@ -80,7 +80,7 @@ public class TokenServiceImpl implements TokenService {
         RegisterRequest registerRequest = new RegisterRequest();
         registerRequest.setUsername(registerBO.getUsername());
         registerRequest.setPassword(PasswordUtils.encrypt(registerBO.getPassword()));
-        RemoteResult<Boolean> result = accountClient.register(registerRequest);
+        RemoteResult<Boolean> result = userClient.register(registerRequest);
 
         return result.getData();
     }

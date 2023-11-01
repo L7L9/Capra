@@ -4,6 +4,7 @@ import com.capra.api.domain.request.RegisterRequest;
 import com.capra.api.domain.response.LoginResponse;
 import com.capra.api.result.RemoteResult;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,14 +16,14 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @date 2023/10/30
  */
 @FeignClient("capra-account")
-public interface AccountClient {
+public interface UserClient {
     /**
      * 通过账户名获取用户需要认证的信息
      *
      * @param username 用户名
      * @return 返回用户信息
      */
-    @PostMapping("/account/info/{username}")
+    @GetMapping("/user/info/{username}")
     RemoteResult<LoginResponse> getAuthUserMessage(@PathVariable String username);
 
     /**
@@ -31,6 +32,6 @@ public interface AccountClient {
      * @param registerRequest 注册请求
      * @return 成功返回true
      */
-    @PostMapping("/account/register")
+    @PostMapping("/user/register")
     RemoteResult<Boolean> register(@RequestBody RegisterRequest registerRequest);
 }
