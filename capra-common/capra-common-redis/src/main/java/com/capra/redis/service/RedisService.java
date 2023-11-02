@@ -52,4 +52,11 @@ public interface RedisService {
      * @return 过期时间
      */
     Long getExpire(String key);
+
+    /**
+     * 判断是否有这个属性
+     * @param key 键
+     * @return 有返回true;否则返回false
+     */
+    Boolean hasKey(String key);
 }

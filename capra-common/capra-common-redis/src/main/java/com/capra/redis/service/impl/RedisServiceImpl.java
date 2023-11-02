@@ -48,4 +48,9 @@ public class RedisServiceImpl implements RedisService {
     public Long getExpire(String key) {
         return redisTemplate.getExpire(key);
     }
+
+    @Override
+    public Boolean hasKey(String key) {
+        return redisTemplate.hasKey(key);
+    }
 }
