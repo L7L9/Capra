@@ -10,7 +10,18 @@ import lombok.Data;
  */
 @Data
 public class CommonClaims {
+    /**
+     * 用户id
+     */
     private Long userId;
 
+    /**
+     * uuid
+     */
+    private String uuid;
+
+    /**
+     * 用户名
+     */
     private String username;
 }
