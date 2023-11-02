@@ -1,29 +1,40 @@
 package com.capra.auth.service;
 
-
-import com.capra.auth.domain.bo.LoginBO;
-import com.capra.auth.domain.bo.RegisterBO;
+import com.capra.core.domain.CommonClaims;
 
 /**
  * token服务
  *
  * @author lql
- * @date 2023/10/23
+ * @date 2023/11/02
  */
 public interface TokenService {
     /**
-     * 登录并且获取token
+     * 创建token
      *
-     * @param loginBO 登录bo类
+     * @param claims 存于token中的信息
      * @return token
      */
-    String login(LoginBO loginBO);
+    String createToken(CommonClaims claims);
 
     /**
-     * 注册用户
+     * 刷新令牌缓存时间
      *
-     * @param registerBO 注册bo类
+     * @param token 令牌
+     */
+    void refreshToken(String token);
+
+    /**
+     * 删除token
+     * @param token token
      * @return 成功返回true
      */
-    Boolean register(RegisterBO registerBO);
+    Boolean deleteToken(String token);
+
+    /**
+     * 检测token的过期时间
+     *
+     * @param token 令牌
+     */
+    void verifyToken(String token);
 }
