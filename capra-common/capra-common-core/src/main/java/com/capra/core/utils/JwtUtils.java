@@ -30,6 +30,7 @@ public class JwtUtils {
         return jwt
                 .setPayload(JwtConstant.CLAIM_ID,claims.getUserId())
                 .setPayload(JwtConstant.CLAIM_NAME,claims.getUsername())
+                .setPayload(JwtConstant.CLAIM_UUID,claims.getUuid())
                 .setIssuer(JwtConstant.ISSUER)
                 .setKey(JwtConstant.KEY)
                 .setIssuedAt(date)
@@ -75,5 +76,16 @@ public class JwtUtils {
             throw new JWTException("token无效或者过期");
         }
         return Convert.convert(String.class,jwt.getPayload(JwtConstant.CLAIM_NAME));
+    }
+
+    /**
+     * 获取uuid
+     *
+     * @param token 用户token
+     * @return 返回uuid
+     */
+    public static String getUuid(String token){
+        JWT jwt = JWT.of(token).setKey(JwtConstant.KEY);
+        return Convert.convert(String.class,jwt.getPayload(JwtConstant.CLAIM_UUID));
     }
 }
