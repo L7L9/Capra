@@ -5,19 +5,18 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.capra</groupId>
-        <artifactId>capra-parent</artifactId>
+        <artifactId>capra-common</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>capra-common</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>capra-common-redis</artifactId>
+    <description>redis模块</description>
 
-    <description>capra通用模块</description>
-
-    <modules>
-        <module>capra-common-core</module>
-        <module>capra-common-mysql</module>
-        <module>capra-common-security</module>
-        <module>capra-common-redis</module>
-    </modules>
+    <dependencies>
+        <!-- springboot redis依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+    </dependencies>
 </project>
