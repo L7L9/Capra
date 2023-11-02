@@ -28,7 +28,12 @@ public class JwtConstant {
     public final static String CLAIM_NAME = "username";
 
     /**
-     * 持续时间
+     * 存用户uuid
      */
-    public final static int DURATION = 30 * 60;
+    public final static String CLAIM_UUID = "uuid";
+
+    /**
+     * 持续时间(30天)
+     */
+    public final static int DURATION = 30 * 24 * 60 * 60;
 }
