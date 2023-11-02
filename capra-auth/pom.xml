@@ -35,5 +35,9 @@
             <groupId>com.capra</groupId>
             <artifactId>capra-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.capra</groupId>
+            <artifactId>capra-common-redis</artifactId>
+        </dependency>
     </dependencies>
 </project>

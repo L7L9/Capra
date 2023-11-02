@@ -115,6 +115,11 @@
                 <artifactId>capra-common-mysql</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.capra</groupId>
+                <artifactId>capra-common-redis</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <!-- capra-api模块-->
             <dependency>
                 <groupId>com.capra</groupId>
