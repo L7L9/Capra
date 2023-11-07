@@ -23,11 +23,6 @@ public class JwtConstant {
     public final static String CLAIM_ID = "user_id";
 
     /**
-     * 存用户名
-     */
-    public final static String CLAIM_NAME = "username";
-
-    /**
      * 存用户uuid
      */
     public final static String CLAIM_UUID = "uuid";
