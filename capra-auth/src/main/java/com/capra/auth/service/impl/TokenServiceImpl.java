@@ -1,8 +1,13 @@
 package com.capra.auth.service.impl;
 
+import cn.hutool.core.date.DateField;
+import cn.hutool.core.date.DateTime;
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.IdUtil;
+import cn.hutool.jwt.JWT;
 import com.capra.auth.constant.TokenConstant;
 import com.capra.auth.service.TokenService;
+import com.capra.core.constant.JwtConstant;
 import com.capra.core.domain.CommonClaims;
 import com.capra.core.utils.JwtUtils;
 import com.capra.redis.service.RedisService;
@@ -23,16 +28,29 @@ public class TokenServiceImpl implements TokenService {
     private RedisService redisService;
 
     /**
-     * 持续时间
+     * 项目启动时间
+     */
+    private final static DateTime NOT_BEFORE_TIME = DateUtil.date();
+
+    /**
+     * 持续时间 (2h)
      */
     private final static long DURATION = 1000 * 60 * 60  * 2L;
 
     @Override
     public String createToken(CommonClaims claims) {
-        if(Objects.isNull(claims.getUuid())){
-            claims.setUuid(IdUtil.fastUUID());
-        }
-        return JwtUtils.createToken(claims);
+        DateTime date = DateUtil.date();
+
+        JWT jwt = new JWT();
+        return jwt
+                .setPayload(JwtConstant.CLAIM_ID,claims.getUserId())
+                .setPayload(JwtConstant.CLAIM_UUID,IdUtil.fastUUID())
+                .setIssuer(JwtConstant.ISSUER)
+                .setKey(JwtConstant.KEY)
+                .setIssuedAt(date)
+                .setNotBefore(NOT_BEFORE_TIME)
+                .setExpiresAt(DateUtil.offset(date, DateField.SECOND, JwtConstant.DURATION))
+                .sign();
     }
 
     @Override
