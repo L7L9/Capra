@@ -48,7 +48,7 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
             return Mono.just(new AuthorizationDecision((false)));
         }
         // 判断是否有效
-        if(!JwtUtils.checkToken(token)){
+        if(!JwtUtils.checkValid(token)){
             return Mono.just(new AuthorizationDecision((false)));
         }
 
