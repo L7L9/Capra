@@ -137,6 +137,7 @@
         <module>capra-account</module>
         <module>capra-api</module>
         <module>capra-file</module>
+        <module>capra-article</module>
     </modules>
 
     <build>
