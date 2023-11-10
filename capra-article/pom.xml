@@ -10,5 +10,20 @@
     </parent>
 
     <artifactId>capra-article</artifactId>
+    <description>文章模块</description>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.capra</groupId>
+            <artifactId>capra-common-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.capra</groupId>
+            <artifactId>capra-common-mysql</artifactId>
+        </dependency>
+    </dependencies>
 </project>
