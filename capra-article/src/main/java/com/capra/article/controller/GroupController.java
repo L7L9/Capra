@@ -1,6 +1,7 @@
 package com.capra.article.controller;
 
 import com.capra.article.domain.bo.CreateGroupBO;
+import com.capra.article.domain.bo.TransferGroupBO;
 import com.capra.article.domain.po.ArticleMetadataGroup;
 import com.capra.article.service.GroupService;
 import com.capra.core.constant.HeaderConstant;
@@ -35,14 +36,34 @@ public class GroupController {
         return CommonResult.successWithDetail("添加文章分组成功",groupService.createGroup(createGroupBO));
     }
 
+    /**
+     * 获取登录用户所有分组
+     * @param httpServletRequest http请求
+     * @return 分组数据
+     */
     @GetMapping
     public CommonResult<List<ArticleMetadataGroup>> getAllGroups(HttpServletRequest httpServletRequest){
         String token = httpServletRequest.getHeader(HeaderConstant.TOKEN_HEADER);
         return CommonResult.successWithDetail("获取文章分组列表成功",groupService.getAllGroup(JwtUtils.getUserId(token)));
     }
 
+    /**
+     * 删除分组
+     * @param id 分组id
+     * @return 成功返回true
+     */
     @DeleteMapping("/{id}")
     public CommonResult<Boolean> deleteGroup(@PathVariable Long id){
         return CommonResult.successWithDetail("删除分组成功",groupService.deleteGroup(id));
+    }
+
+    /**
+     * 批量转移文章,从一个分组转移到另一个分组
+     * @param transferGroupBO 转移分组bo类
+     * @return 操作成功返回true
+     */
+    @PutMapping
+    public CommonResult<Boolean> transferGroup(@RequestBody TransferGroupBO transferGroupBO){
+        return CommonResult.successWithDetail("转移成功",groupService.transferGroup(transferGroupBO));
     }
 }
