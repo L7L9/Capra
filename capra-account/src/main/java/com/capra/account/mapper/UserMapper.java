@@ -16,6 +16,6 @@ public interface UserMapper extends BaseMapper<User> {
      * @return 用户po
      */
     default User selectByUsername(String username){
-        return this.selectOne(new QueryWrapper<User>().eq("username",username));
+        return this.selectOne(new QueryWrapper<User>().lambda().eq(User::getUsername,username));
     }
 }
