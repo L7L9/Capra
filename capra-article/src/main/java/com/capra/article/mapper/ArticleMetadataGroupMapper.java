@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.capra.article.domain.po.ArticleMetadataGroup;
 
+import java.util.List;
+
 /**
  * article_metadata_group对应的mapper
  * @author lql
@@ -19,5 +21,14 @@ public interface ArticleMetadataGroupMapper extends BaseMapper<ArticleMetadataGr
      */
     default ArticleMetadataGroup selectByNameAndUserId(String name,Long userId){
         return this.selectOne(new QueryWrapper<ArticleMetadataGroup>().eq("name",name).eq("user_id",userId));
+    }
+
+    /**
+     * 通过用户id查询所有的分组
+     * @param userId 用户id
+     * @return 返回分组列表
+     */
+    default List<ArticleMetadataGroup> selectByUserId(Long userId){
+        return this.selectList(new QueryWrapper<ArticleMetadataGroup>().eq("user_id",userId));
     }
 }
