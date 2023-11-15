@@ -26,4 +26,11 @@ public interface GroupService {
      * @return 返回分组列表
      */
     List<ArticleMetadataGroup> getAllGroup(Long userId);
+
+    /**
+     * 删除分组
+     * @param id 分组id
+     * @return 成功返回true
+     */
+    Boolean deleteGroup(Long id);
 }

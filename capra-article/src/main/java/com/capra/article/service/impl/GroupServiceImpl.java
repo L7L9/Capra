@@ -44,4 +44,12 @@ public class GroupServiceImpl implements GroupService {
     public List<ArticleMetadataGroup> getAllGroup(Long userId) {
         return articleMetadataGroupMapper.selectByUserId(userId);
     }
+
+    @Override
+    public Boolean deleteGroup(Long id) {
+        if(articleMetadataGroupMapper.deleteById(id) != -1){
+            throw new DaoException("数据逻辑删除失败");
+        }
+        return true;
+    }
 }

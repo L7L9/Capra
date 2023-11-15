@@ -40,4 +40,9 @@ public class GroupController {
         String token = httpServletRequest.getHeader(HeaderConstant.TOKEN_HEADER);
         return CommonResult.successWithDetail("获取文章分组列表成功",groupService.getAllGroup(JwtUtils.getUserId(token)));
     }
+
+    @DeleteMapping("/{id}")
+    public CommonResult<Boolean> deleteGroup(@PathVariable Long id){
+        return CommonResult.successWithDetail("删除分组成功",groupService.deleteGroup(id));
+    }
 }
