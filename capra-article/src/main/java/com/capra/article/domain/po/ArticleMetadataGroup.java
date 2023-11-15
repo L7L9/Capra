@@ -1,5 +1,6 @@
 package com.capra.article.domain.po;
 
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -31,4 +32,10 @@ public class ArticleMetadataGroup {
      * 用户id
      */
     private Long userId;
+
+    /**
+     * 逻辑删除
+     */
+    @TableLogic
+    private Integer isDeleted;
 }
