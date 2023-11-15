@@ -20,7 +20,9 @@ public interface ArticleMetadataGroupMapper extends BaseMapper<ArticleMetadataGr
      * @return 文章分组po类
      */
     default ArticleMetadataGroup selectByNameAndUserId(String name,Long userId){
-        return this.selectOne(new QueryWrapper<ArticleMetadataGroup>().eq("name",name).eq("user_id",userId));
+        return this.selectOne(new QueryWrapper<ArticleMetadataGroup>().lambda()
+                .eq(ArticleMetadataGroup::getName,name)
+                .eq(ArticleMetadataGroup::getUserId,userId));
     }
 
     /**
@@ -29,6 +31,7 @@ public interface ArticleMetadataGroupMapper extends BaseMapper<ArticleMetadataGr
      * @return 返回分组列表
      */
     default List<ArticleMetadataGroup> selectByUserId(Long userId){
-        return this.selectList(new QueryWrapper<ArticleMetadataGroup>().eq("user_id",userId));
+        return this.selectList(new QueryWrapper<ArticleMetadataGroup>().lambda()
+                .eq(ArticleMetadataGroup::getUserId,userId));
     }
 }
