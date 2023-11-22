@@ -23,6 +23,12 @@ public class IpfsClient {
     private String addr;
 
     /**
+     * ipfs http访问网关
+     */
+    @Value("${ipfs.gateway}")
+    private String gateway;
+
+    /**
      * 最大对象数量
      */
     @Value("${ipfs.max-total}")
@@ -74,6 +80,15 @@ public class IpfsClient {
             ipfsPool.returnObject(ipfs);
         }
         return result.hash.toString();
+    }
+
+    /**
+     * 获取访问路径
+     * @param cid 文件cid
+     * @return 访问路径
+     */
+    public String getFileAccessPath(String cid){
+        return gateway + "/ipfs/" + cid;
     }
 
     /**
