@@ -35,6 +35,6 @@ public interface FileClient {
      * @param uri 资源路径
      * @return 成功返回true
      */
-    @DeleteMapping
+    @DeleteMapping("/file")
     RemoteResult<Boolean> delete(String uri);
 }
