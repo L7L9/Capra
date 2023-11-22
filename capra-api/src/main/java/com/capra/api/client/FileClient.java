@@ -28,7 +28,15 @@ public interface FileClient {
      * @return 返回文件byte
      */
     @GetMapping("/file")
-    RemoteResult<byte[]> getFile(String uri);
+    RemoteResult<byte[]> download(String uri);
+
+    /**
+     * 获取文件访问路径
+     * @param uri cid
+     * @return 访问路径
+     */
+    @GetMapping("/file/path")
+    RemoteResult<String> getAccessPath(String uri);
 
     /**
      * 删除文件
