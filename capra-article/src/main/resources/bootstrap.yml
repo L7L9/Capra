@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: capra-article
+  profiles:
+    active: dev
+
+

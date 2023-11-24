@@ -1,0 +1,8 @@
+spring:
+  cloud:
+    nacos:
+      username: nacos
+      password: nacos
+      discovery:
+        # 服务发现地址
+        server-addr: 1.1.1.1:8848
