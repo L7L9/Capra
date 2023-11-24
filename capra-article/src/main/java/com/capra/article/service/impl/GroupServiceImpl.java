@@ -1,7 +1,8 @@
 package com.capra.article.service.impl;
 
 import com.capra.article.domain.bo.CreateGroupBO;
-import com.capra.article.domain.po.ArticleMetadataGroup;
+import com.capra.article.domain.bo.TransferGroupBO;
+import com.capra.article.domain.po.ArticleGroup;
 import com.capra.article.mapper.ArticleMetadataGroupMapper;
 import com.capra.article.service.GroupService;
 import com.capra.core.exception.DaoException;
@@ -26,12 +27,12 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public Boolean createGroup(CreateGroupBO createGroupBO) {
         // 查询有无重复
-        ArticleMetadataGroup articleMetadataGroup = articleMetadataGroupMapper.selectByNameAndUserId(createGroupBO.getName(), createGroupBO.getUserId());
-        if(!Objects.isNull(articleMetadataGroup)){
+        ArticleGroup articleGroup = articleMetadataGroupMapper.selectByNameAndUserId(createGroupBO.getName(), createGroupBO.getUserId());
+        if(!Objects.isNull(articleGroup)){
             throw new ServiceException("该分组名已经存在,请重新输入");
         }
         // 插入
-        ArticleMetadataGroup group = new ArticleMetadataGroup();
+        ArticleGroup group = new ArticleGroup();
         group.setName(createGroupBO.getName()).setDescription(createGroupBO.getDescription()).setUserId(createGroupBO.getUserId());
         if (articleMetadataGroupMapper.insert(group) != 1){
             throw new DaoException("数据库插入失败");
@@ -41,7 +42,7 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public List<ArticleMetadataGroup> getAllGroup(Long userId) {
+    public List<ArticleGroup> getAllGroup(Long userId) {
         return articleMetadataGroupMapper.selectByUserId(userId);
     }
 
@@ -51,5 +52,11 @@ public class GroupServiceImpl implements GroupService {
             throw new DaoException("数据逻辑删除失败");
         }
         return true;
+    }
+
+    @Override
+    public Boolean transferGroup(TransferGroupBO transferGroupBO) {
+        
+        return null;
     }
 }

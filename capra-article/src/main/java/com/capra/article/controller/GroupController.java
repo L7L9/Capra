@@ -2,7 +2,7 @@ package com.capra.article.controller;
 
 import com.capra.article.domain.bo.CreateGroupBO;
 import com.capra.article.domain.bo.TransferGroupBO;
-import com.capra.article.domain.po.ArticleMetadataGroup;
+import com.capra.article.domain.po.ArticleGroup;
 import com.capra.article.service.GroupService;
 import com.capra.core.constant.HeaderConstant;
 import com.capra.core.result.CommonResult;
@@ -42,7 +42,7 @@ public class GroupController {
      * @return 分组数据
      */
     @GetMapping
-    public CommonResult<List<ArticleMetadataGroup>> getAllGroups(HttpServletRequest httpServletRequest){
+    public CommonResult<List<ArticleGroup>> getAllGroups(HttpServletRequest httpServletRequest){
         String token = httpServletRequest.getHeader(HeaderConstant.TOKEN_HEADER);
         return CommonResult.successWithDetail("获取文章分组列表成功",groupService.getAllGroup(JwtUtils.getUserId(token)));
     }

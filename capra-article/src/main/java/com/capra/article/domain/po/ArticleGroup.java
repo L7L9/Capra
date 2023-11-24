@@ -1,6 +1,7 @@
 package com.capra.article.domain.po;
 
 import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -12,7 +13,8 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class ArticleMetadataGroup {
+@TableName("tb_article_group")
+public class ArticleGroup {
     /**
      * 主键id
      */

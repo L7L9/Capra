@@ -2,7 +2,7 @@ package com.capra.article.mapper;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.capra.article.domain.po.ArticleMetadataGroup;
+import com.capra.article.domain.po.ArticleGroup;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
  * @author lql
  * @date 2023/11/10
  */
-public interface ArticleMetadataGroupMapper extends BaseMapper<ArticleMetadataGroup> {
+public interface ArticleMetadataGroupMapper extends BaseMapper<ArticleGroup> {
     /**
      * 通过分组名和用户id查询
      *
@@ -19,10 +19,10 @@ public interface ArticleMetadataGroupMapper extends BaseMapper<ArticleMetadataGr
      * @param userId 用户id
      * @return 文章分组po类
      */
-    default ArticleMetadataGroup selectByNameAndUserId(String name,Long userId){
-        return this.selectOne(new QueryWrapper<ArticleMetadataGroup>().lambda()
-                .eq(ArticleMetadataGroup::getName,name)
-                .eq(ArticleMetadataGroup::getUserId,userId));
+    default ArticleGroup selectByNameAndUserId(String name, Long userId){
+        return this.selectOne(new QueryWrapper<ArticleGroup>().lambda()
+                .eq(ArticleGroup::getName,name)
+                .eq(ArticleGroup::getUserId,userId));
     }
 
     /**
@@ -30,8 +30,8 @@ public interface ArticleMetadataGroupMapper extends BaseMapper<ArticleMetadataGr
      * @param userId 用户id
      * @return 返回分组列表
      */
-    default List<ArticleMetadataGroup> selectByUserId(Long userId){
-        return this.selectList(new QueryWrapper<ArticleMetadataGroup>().lambda()
-                .eq(ArticleMetadataGroup::getUserId,userId));
+    default List<ArticleGroup> selectByUserId(Long userId){
+        return this.selectList(new QueryWrapper<ArticleGroup>().lambda()
+                .eq(ArticleGroup::getUserId,userId));
     }
 }
