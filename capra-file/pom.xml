@@ -41,7 +41,15 @@
         </dependency>
         <dependency>
             <groupId>com.capra</groupId>
+            <artifactId>capra-common-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.capra</groupId>
             <artifactId>capra-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-core</artifactId>
         </dependency>
     </dependencies>
 </project>
