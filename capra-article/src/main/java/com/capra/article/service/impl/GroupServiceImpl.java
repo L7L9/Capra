@@ -4,6 +4,7 @@ import com.capra.article.domain.bo.CreateGroupBO;
 import com.capra.article.domain.bo.TransferGroupBO;
 import com.capra.article.domain.po.ArticleGroup;
 import com.capra.article.mapper.ArticleMetadataGroupMapper;
+import com.capra.article.mapper.ArticleMetadataMapper;
 import com.capra.article.service.GroupService;
 import com.capra.core.exception.DaoException;
 import com.capra.core.exception.ServiceException;
@@ -23,6 +24,9 @@ import java.util.Objects;
 public class GroupServiceImpl implements GroupService {
     @Resource
     private ArticleMetadataGroupMapper articleMetadataGroupMapper;
+
+    @Resource
+    private ArticleMetadataMapper articleMetadataMapper;
 
     @Override
     public Boolean createGroup(CreateGroupBO createGroupBO) {
@@ -56,7 +60,9 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public Boolean transferGroup(TransferGroupBO transferGroupBO) {
-        
-        return null;
+        if(articleMetadataMapper.updateGroupId(transferGroupBO.getSourceId(), transferGroupBO.getTransferId()) <= 0){
+            throw new DaoException("数据库操作异常");
+        }
+        return true;
     }
 }
