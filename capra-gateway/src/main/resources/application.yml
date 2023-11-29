@@ -7,9 +7,18 @@ spring:
         - id: capra-account
           uri: lb://capra-account
           predicates:
-            - Path=/account/**
+            - Path=/capra-account/**
+          filters:
+            - StripPrefix=1
         - id: capra-auth
           uri: lb://capra-auth
           predicates:
-            - Path=/auth/**
-
+            - Path=/capra-auth/**
+          filters:
+            - StripPrefix=1
+        - id: capra-article
+          uri: lb://capra-article
+          predicates:
+            - Path=/capra-article/**
+          filters:
+            - StripPrefix=1
