@@ -47,4 +47,15 @@ public class JwtUtils {
         JWT jwt = JWT.of(token).setKey(JwtConstant.KEY);
         return Convert.convert(String.class,jwt.getPayload(JwtConstant.CLAIM_UUID));
     }
+
+    /**
+     * 获取用户名
+     *
+     * @param token 用户token
+     * @return 用户名
+     */
+    public static String getUsername(String token){
+        JWT jwt = JWT.of(token).setKey(JwtConstant.KEY);
+        return Convert.convert(String.class,jwt.getPayload(JwtConstant.CLAIM_USERNAME));
+    }
 }
