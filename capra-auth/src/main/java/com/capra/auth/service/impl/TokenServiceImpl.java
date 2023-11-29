@@ -43,6 +43,7 @@ public class TokenServiceImpl implements TokenService {
 
         JWT jwt = new JWT();
         return jwt
+                .setPayload(JwtConstant.CLAIM_USERNAME,claims.getUsername())
                 .setPayload(JwtConstant.CLAIM_ID,claims.getUserId())
                 .setPayload(JwtConstant.CLAIM_UUID,IdUtil.fastUUID())
                 .setIssuer(JwtConstant.ISSUER)
