@@ -18,6 +18,9 @@
         </repository>
     </repositories>
 
+    <properties>
+        <minio.version>8.5.3</minio.version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -50,6 +53,11 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+            <version>${minio.version}</version>
         </dependency>
     </dependencies>
 </project>
