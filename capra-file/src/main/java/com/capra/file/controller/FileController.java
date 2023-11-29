@@ -1,13 +1,12 @@
 package com.capra.file.controller;
 
 import com.capra.api.annotation.InnerCall;
+import com.capra.api.domain.request.MinioOperateRequest;
+import com.capra.api.domain.request.MinioUploadRequest;
 import com.capra.api.result.RemoteResult;
-import com.capra.file.service.FileService;
+import com.capra.file.service.MinioService;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 
 /**
  * 文件请求
@@ -17,30 +16,30 @@ import java.io.IOException;
 @RestController
 @RequestMapping("file")
 public class FileController {
-    @Resource(name = "ipfsService")
-    private FileService fileService;
+    @Resource
+    private MinioService fileService;
 
     @InnerCall
     @PostMapping
-    public RemoteResult<String> upload(MultipartFile file) throws IOException {
-        return RemoteResult.successWithDetail("文件上传成功", fileService.upload(file));
+    public RemoteResult<String> upload(@RequestBody MinioUploadRequest minioUploadRequest) {
+        return RemoteResult.successWithDetail("文件上传成功", fileService.upload(minioUploadRequest));
     }
 
     @InnerCall
     @GetMapping
-    public RemoteResult<byte[]> download(String uri){
-        return RemoteResult.successWithDetail("文件获取成功",fileService.download(uri));
+    public RemoteResult<byte[]> download(@RequestBody MinioOperateRequest minioOperateRequest){
+        return RemoteResult.successWithDetail("文件获取成功",fileService.download(minioOperateRequest));
     }
 
     @InnerCall
     @GetMapping("/path")
-    public RemoteResult<String> getAccessPath(String uri){
-        return RemoteResult.successWithDetail("获取文件访问路径成功", fileService.getAccessPath(uri));
+    public RemoteResult<String> getAccessPath(@RequestBody MinioOperateRequest minioOperateRequest){
+        return RemoteResult.successWithDetail("获取文件访问路径成功", fileService.getAccessPath(minioOperateRequest));
     }
 
     @InnerCall
     @DeleteMapping
-    public RemoteResult<Boolean> delete(String uri){
-        return RemoteResult.successWithDetail("文件删除成功",fileService.delete(uri));
+    public RemoteResult<Boolean> delete(@RequestBody MinioOperateRequest minioOperateRequest){
+        return RemoteResult.successWithDetail("文件删除成功",fileService.delete(minioOperateRequest));
     }
 }
