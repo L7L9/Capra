@@ -32,7 +32,7 @@ public class ArticleMetadata {
     /**
      * 作者id
      */
-    private String authorId;
+    private Long authorId;
 
     /**
      * 文件uri
