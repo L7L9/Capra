@@ -63,6 +63,7 @@ public class AuthServiceImpl implements AuthService {
         // 生成token
         CommonClaims claims = new CommonClaims();
         claims.setUserId(loginResponse.getId());
+        claims.setUsername(loginResponse.getUsername());
         String token = tokenService.createToken(claims);
         // 将token加入到redis缓存
         tokenService.refreshToken(token);

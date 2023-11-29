@@ -20,12 +20,17 @@ public class JwtConstant {
     /**
      * 存用户id
      */
-    public final static String CLAIM_ID = "user_id";
+    public final static String CLAIM_ID = "userId";
 
     /**
      * 存用户uuid
      */
     public final static String CLAIM_UUID = "uuid";
+
+    /**
+     * 存用户名
+     */
+    public final static String CLAIM_USERNAME = "username";
 
     /**
      * 持续时间(30天)

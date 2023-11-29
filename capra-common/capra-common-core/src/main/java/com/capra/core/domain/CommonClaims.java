@@ -19,4 +19,9 @@ public class CommonClaims {
      * uuid
      */
     private String uuid;
+
+    /**
+     * 用户名
+     */
+    private String username;
 }
