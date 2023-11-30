@@ -25,11 +25,6 @@ public class ArticleMetadata {
     private String title;
 
     /**
-     * 作者名
-     */
-    private String authorName;
-
-    /**
      * 作者id
      */
     private Long authorId;

@@ -3,6 +3,7 @@ package com.capra.article.service.impl;
 import com.capra.api.client.FileClient;
 import com.capra.api.domain.request.MinioUploadRequest;
 import com.capra.api.result.RemoteResult;
+import com.capra.article.ArticleConstant;
 import com.capra.article.domain.bo.CreateArticleBO;
 import com.capra.article.domain.po.ArticleMetadata;
 import com.capra.article.mapper.ArticleMetadataMapper;
@@ -43,8 +44,8 @@ public class ArticleServiceImpl implements ArticleService {
                 .setGroupId(createArticleBO.getGroupId())
                 .setTitle(createArticleBO.getTitle())
                 .setUri(result.getData())
-                .setAuthorName(createArticleBO.getAuthorName())
-                .setAuthorId(createArticleBO.getAuthorId());
+                .setAuthorId(createArticleBO.getAuthorId())
+                .setStatus(ArticleConstant.UNRELEASED);
         // 插入数据库
         if(articleMetadataMapper.insert(articleMetadata) != 1){
             throw new DaoException("数据库插入失败");
