@@ -51,5 +51,9 @@
             <groupId>com.capra</groupId>
             <artifactId>capra-common-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.capra</groupId>
+            <artifactId>capra-api</artifactId>
+        </dependency>
     </dependencies>
 </project>
