@@ -1,13 +1,13 @@
 package com.capra.auth.controller;
 
+import com.capra.api.annotation.InnerCall;
+import com.capra.api.result.RemoteResult;
 import com.capra.auth.domain.bo.LoginBO;
 import com.capra.auth.domain.bo.RegisterBO;
 import com.capra.auth.service.AuthService;
 import com.capra.auth.service.TokenService;
-import com.capra.core.constant.HeaderConstant;
 import com.capra.core.result.CommonResult;
 import jakarta.annotation.Resource;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,10 +41,10 @@ public class AuthController {
         return CommonResult.failWithMsg("网络繁忙,请重试");
     }
 
-    @PostMapping("/refresh")
-    public CommonResult<Void> refresh(HttpServletRequest request){
-        String token = request.getHeader(HeaderConstant.TOKEN_HEADER);
-        tokenService.refreshToken(token);
-        return CommonResult.success();
+    @InnerCall
+    @PostMapping("/verify")
+    public RemoteResult<Boolean> verify(String token){
+        tokenService.verifyToken(token);
+        return RemoteResult.success();
     }
 }
