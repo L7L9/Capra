@@ -69,13 +69,16 @@ public class TokenServiceImpl implements TokenService {
     }
 
     @Override
-    public void verifyToken(String token) {
+    public Boolean verifyToken(String token) {
         if(!Objects.isNull(token)){
             long currentTime = System.currentTimeMillis();
             long expireTime = redisService.getExpire(JwtUtils.getUuid(token));
+            // 判断剩余时间是否小于持续时间
             if(expireTime - currentTime <= DURATION){
                 refreshToken(token);
             }
+            return true;
         }
+        return false;
     }
 }

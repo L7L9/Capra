@@ -35,6 +35,7 @@ public interface TokenService {
      * 检测token的过期时间
      *
      * @param token 令牌
+     * @return 验证成功返回ture,否则返回false
      */
-    void verifyToken(String token);
+    Boolean verifyToken(String token);
 }
