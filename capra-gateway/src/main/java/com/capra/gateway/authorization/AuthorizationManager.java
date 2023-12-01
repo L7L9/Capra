@@ -1,5 +1,6 @@
 package com.capra.gateway.authorization;
 
+import com.capra.api.client.AuthClient;
 import com.capra.core.utils.JwtUtils;
 import com.capra.gateway.config.UrlWhiteListConfig;
 import com.capra.core.constant.HeaderConstant;
@@ -25,6 +26,9 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
     @Resource
     private UrlWhiteListConfig urlWhiteListConfig;
 
+    @Resource
+    private AuthClient authClient;
+
     @Override
     public Mono<AuthorizationDecision> check(Mono<Authentication> mono, AuthorizationContext context) {
         // 获取请求对象
@@ -48,10 +52,9 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
             return Mono.just(new AuthorizationDecision((false)));
         }
         // 判断是否有效
-        if(!JwtUtils.checkValid(token)){
+        if(!authClient.verify(token).getData()){
             return Mono.just(new AuthorizationDecision((false)));
         }
-
         return Mono.just(new AuthorizationDecision(true));
     }
 }
