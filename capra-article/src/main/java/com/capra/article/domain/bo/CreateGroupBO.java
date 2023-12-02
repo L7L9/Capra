@@ -1,6 +1,7 @@
 package com.capra.article.domain.bo;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * 创建分组的bo类
@@ -9,6 +10,7 @@ import lombok.Data;
  * @date 2023/11/10
  */
 @Data
+@Accessors(chain = true)
 public class CreateGroupBO {
     /**
      * 用户id
