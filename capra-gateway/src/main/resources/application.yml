@@ -3,6 +3,10 @@ server:
 spring:
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true #使用小写service-id
       routes:
         - id: capra-account
           uri: lb://capra-account
@@ -22,3 +26,9 @@ spring:
             - Path=/capra-article/**
           filters:
             - StripPrefix=1
+
+security:
+  ignore:
+    urls:
+      - "/capra-auth/auth/register"
+      - "/capra-auth/auth/login"
