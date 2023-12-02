@@ -58,6 +58,7 @@
         <lombok.version>1.18.26</lombok.version>
         <ipfs.version>1.3.3</ipfs.version>
         <apache-pool2.version>2.11.1</apache-pool2.version>
+        <reflections.version>0.9.11</reflections.version>
     </properties>
 
     <!-- 父项目管理依赖版本-->
@@ -118,6 +119,11 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-pool2</artifactId>
                 <version>${apache-pool2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.reflections</groupId>
+                <artifactId>reflections</artifactId>
+                <version>${reflections.version}</version>
             </dependency>
             <!-- common模块导入 -->
             <dependency>
