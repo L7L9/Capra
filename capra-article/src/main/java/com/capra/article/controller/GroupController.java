@@ -2,6 +2,7 @@ package com.capra.article.controller;
 
 import com.capra.article.domain.bo.CreateGroupBO;
 import com.capra.article.domain.bo.TransferGroupBO;
+import com.capra.article.domain.dto.CreateGroupDTO;
 import com.capra.article.domain.po.ArticleGroup;
 import com.capra.article.service.GroupService;
 import com.capra.core.constant.HeaderConstant;
@@ -25,14 +26,17 @@ public class GroupController {
 
     /**
      * 添加分组请求
-     * @param createGroupBO 创建分组bo类
+     * @param createGroupDTO 创建分组bo类
      * @param httpServletRequest http请求
      * @return 成功返回ture
      */
     @PostMapping
-    public CommonResult<Boolean> addGroup(@RequestBody CreateGroupBO createGroupBO, HttpServletRequest httpServletRequest){
+    public CommonResult<Boolean> addGroup(@RequestBody CreateGroupDTO createGroupDTO, HttpServletRequest httpServletRequest){
         String token = httpServletRequest.getHeader(HeaderConstant.TOKEN_HEADER);
-        createGroupBO.setUserId(JwtUtils.getUserId(token));
+        CreateGroupBO createGroupBO = new CreateGroupBO()
+                .setUserId(JwtUtils.getUserId(token))
+                .setName(createGroupDTO.getName())
+                .setDescription(createGroupDTO.getDescription());
         return CommonResult.successWithDetail("添加文章分组成功",groupService.createGroup(createGroupBO));
     }
 
