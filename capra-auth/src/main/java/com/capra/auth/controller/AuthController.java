@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2023/10/23
  */
 @RestController
-@RequestMapping("auth")
+@RequestMapping("/auth")
 public class AuthController {
     @Resource
     private AuthService authService;
