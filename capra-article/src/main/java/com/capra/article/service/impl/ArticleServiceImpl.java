@@ -3,7 +3,7 @@ package com.capra.article.service.impl;
 import com.capra.api.client.FileClient;
 import com.capra.api.domain.request.MinioUploadRequest;
 import com.capra.api.result.RemoteResult;
-import com.capra.article.ArticleConstant;
+import com.capra.article.constant.ArticleConstant;
 import com.capra.article.domain.bo.CreateArticleBO;
 import com.capra.article.domain.po.ArticleMetadata;
 import com.capra.article.mapper.ArticleMetadataMapper;

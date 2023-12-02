@@ -1,4 +1,4 @@
-package com.capra.article;
+package com.capra.article.constant;
 
 /**
  * 文章状态常量类
