@@ -1,16 +1,18 @@
 package com.capra.gateway.authorization;
 
 import com.capra.api.client.AuthClient;
-import com.capra.core.utils.JwtUtils;
-import com.capra.gateway.config.UrlWhiteListConfig;
 import com.capra.core.constant.HeaderConstant;
+import com.capra.gateway.config.UrlWhiteListConfig;
 import jakarta.annotation.Resource;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.security.authorization.AuthorizationDecision;
 import org.springframework.security.authorization.ReactiveAuthorizationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.server.authorization.AuthorizationContext;
 import org.springframework.stereotype.Component;
+import org.springframework.util.AntPathMatcher;
+import org.springframework.util.PathMatcher;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
@@ -26,6 +28,7 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
     @Resource
     private UrlWhiteListConfig urlWhiteListConfig;
 
+    @Lazy
     @Resource
     private AuthClient authClient;
 
@@ -38,9 +41,10 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
         // 此处是因为nacos配置中热更新时可能会添加新的白名单路径,但是新的路径不会在security中热更新,需要在此重新检测
         // 因为是热更新,规定配置中热更新在尾部添加,因此从列表的尾部开始检测
         String url = request.getURI().getPath();
+        PathMatcher pathMatcher = new AntPathMatcher();
         List<String> urls = urlWhiteListConfig.getUrls();
         for(int i = urls.size() - 1;i >= 0;i--){
-            if (urls.get(i).equals(url)){
+            if (pathMatcher.match(urls.get(i),url)){
                 return Mono.just(new AuthorizationDecision((true)));
             }
         }
