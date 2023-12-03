@@ -49,7 +49,7 @@
         </dependency>
         <dependency>
             <groupId>com.capra</groupId>
-            <artifactId>capra-common-core</artifactId>
+            <artifactId>capra-common-security</artifactId>
         </dependency>
         <dependency>
             <groupId>com.capra</groupId>

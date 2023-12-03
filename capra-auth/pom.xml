@@ -37,7 +37,7 @@
         </dependency>
         <dependency>
             <groupId>com.capra</groupId>
-            <artifactId>capra-common-redis</artifactId>
+            <artifactId>capra-common-security</artifactId>
         </dependency>
     </dependencies>
 </project>

@@ -18,5 +18,6 @@
         <module>capra-common-core</module>
         <module>capra-common-mysql</module>
         <module>capra-common-redis</module>
+        <module>capra-common-security</module>
     </modules>
 </project>
