@@ -39,10 +39,6 @@
             <artifactId>java-ipfs-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-pool2</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.capra</groupId>
             <artifactId>capra-common-core</artifactId>
         </dependency>
