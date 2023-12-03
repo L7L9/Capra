@@ -1,29 +1,27 @@
-package com.capra.auth.service.impl;
+package com.capra.security.service;
 
 import cn.hutool.core.date.DateField;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.jwt.JWT;
-import com.capra.auth.constant.TokenConstant;
-import com.capra.auth.service.TokenService;
 import com.capra.core.constant.JwtConstant;
 import com.capra.core.domain.CommonClaims;
 import com.capra.core.utils.JwtUtils;
 import com.capra.redis.service.RedisService;
 import jakarta.annotation.Resource;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 
 /**
- * token服务,创建token以及刷新等等
+ * token验证工具类
  *
  * @author lql
- * @date 2023/11/02
+ * @date 2023/12/03
  */
-@Service
-public class TokenServiceImpl implements TokenService {
+@Component
+public class TokenService {
     @Resource
     private RedisService redisService;
 
@@ -33,11 +31,20 @@ public class TokenServiceImpl implements TokenService {
     private final static DateTime NOT_BEFORE_TIME = DateUtil.date();
 
     /**
+     * ttl => 1天
+     */
+    public static final long TTL = 60 * 60;
+
+    /**
      * 持续时间 (2h)
      */
     private final static long DURATION = 1000 * 60 * 60  * 2L;
 
-    @Override
+    /**
+     * 创建令牌
+     * @param claims payload存储的用户信息
+     * @return token
+     */
     public String createToken(CommonClaims claims) {
         DateTime date = DateUtil.date();
 
@@ -45,40 +52,55 @@ public class TokenServiceImpl implements TokenService {
         return jwt
                 .setPayload(JwtConstant.CLAIM_USERNAME,claims.getUsername())
                 .setPayload(JwtConstant.CLAIM_ID,claims.getUserId())
-                .setPayload(JwtConstant.CLAIM_UUID,IdUtil.fastUUID())
+                .setPayload(JwtConstant.CLAIM_UUID, IdUtil.fastUUID())
                 .setIssuer(JwtConstant.ISSUER)
                 .setKey(JwtConstant.KEY)
                 .setIssuedAt(date)
                 .setNotBefore(NOT_BEFORE_TIME)
-                .setExpiresAt(DateUtil.offset(date, DateField.SECOND, JwtConstant.DURATION))
+                .setExpiresAt(DateUtil.offset(date, DateField.MINUTE, JwtConstant.DURATION))
                 .sign();
     }
 
-    @Override
-    public void refreshToken(String token) {
+    /**
+     * 刷新token
+     * @param token 令牌
+     */
+    public void refreshToken(String token){
         if(!Objects.isNull(token)){
             // 获取redis中的key
             String userKey = JwtUtils.getUuid(token);
-            redisService.set(userKey,token, TokenConstant.TTL);
+            redisService.set(userKey,token, TTL);
         }
     }
 
-    @Override
-    public Boolean deleteToken(String token) {
-        return redisService.delete(JwtUtils.getUuid(token));
-    }
-
-    @Override
+    /**
+     * 验证令牌有效性
+     * @param token 令牌
+     * @return 有效返回ture
+     */
     public Boolean verifyToken(String token) {
         if(!Objects.isNull(token)){
-            long currentTime = System.currentTimeMillis();
-            long expireTime = redisService.getExpire(JwtUtils.getUuid(token));
-            // 判断剩余时间是否小于持续时间
-            if(expireTime - currentTime <= DURATION){
-                refreshToken(token);
+            // 判断token是否还有效
+            if(!JwtUtils.checkValid(token)){
+                return false;
+            }else {
+                long expireTime = redisService.getExpire(JwtUtils.getUuid(token));
+                // 判断剩余时间是否小于持续时间
+                if(expireTime <= DURATION){
+                    refreshToken(token);
+                }
+                return true;
             }
-            return true;
         }
         return false;
+    }
+
+    /**
+     * 删除token
+     * @param token 令牌
+     * @return 成功返回true
+     */
+    public Boolean deleteToken(String token) {
+        return redisService.delete(JwtUtils.getUuid(token));
     }
 }
