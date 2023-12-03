@@ -8,11 +8,11 @@ import com.capra.auth.constant.AccountConstant;
 import com.capra.auth.domain.bo.LoginBO;
 import com.capra.auth.domain.bo.RegisterBO;
 import com.capra.auth.service.AuthService;
-import com.capra.auth.service.TokenService;
 import com.capra.auth.utils.PasswordUtils;
 import com.capra.core.domain.CommonClaims;
 import com.capra.core.exception.ServiceException;
 import com.capra.core.utils.StringUtils;
+import com.capra.security.service.TokenService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
