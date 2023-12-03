@@ -35,5 +35,5 @@ public class JwtConstant {
     /**
      * 持续时间(30天)
      */
-    public final static int DURATION = 30 * 24 * 60 * 60;
+    public final static int DURATION = 60 * 24 * 30;
 }
