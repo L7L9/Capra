@@ -1,10 +1,9 @@
 package com.capra.gateway.authorization;
 
-import com.capra.api.client.AuthClient;
 import com.capra.core.constant.HeaderConstant;
 import com.capra.gateway.config.UrlWhiteListConfig;
+import com.capra.security.service.TokenService;
 import jakarta.annotation.Resource;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.security.authorization.AuthorizationDecision;
 import org.springframework.security.authorization.ReactiveAuthorizationManager;
@@ -28,9 +27,8 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
     @Resource
     private UrlWhiteListConfig urlWhiteListConfig;
 
-    @Lazy
     @Resource
-    private AuthClient authClient;
+    private TokenService tokenService;
 
     @Override
     public Mono<AuthorizationDecision> check(Mono<Authentication> mono, AuthorizationContext context) {
@@ -56,7 +54,7 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
             return Mono.just(new AuthorizationDecision((false)));
         }
         // 判断是否有效
-        if(!authClient.verify(token).getData()){
+        if(!tokenService.verifyToken(token)){
             return Mono.just(new AuthorizationDecision((false)));
         }
         return Mono.just(new AuthorizationDecision(true));
