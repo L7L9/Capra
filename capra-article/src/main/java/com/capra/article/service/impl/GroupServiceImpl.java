@@ -52,7 +52,7 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public Boolean deleteGroup(Long id) {
-        if(articleMetadataGroupMapper.deleteById(id) != -1){
+        if(articleMetadataGroupMapper.deleteById(id) != 1){
             throw new DaoException("数据逻辑删除失败");
         }
         return true;
