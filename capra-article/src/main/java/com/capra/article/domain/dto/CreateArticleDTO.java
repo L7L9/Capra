@@ -1,7 +1,6 @@
 package com.capra.article.domain.dto;
 
 import lombok.Data;
-import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 创建文章dto
@@ -20,9 +19,4 @@ public class CreateArticleDTO {
      * 分组id
      */
     private Long groupId;
-
-    /**
-     * 文章文件
-     */
-    private MultipartFile file;
 }

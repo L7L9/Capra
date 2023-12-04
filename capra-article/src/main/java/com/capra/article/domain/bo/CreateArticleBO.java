@@ -2,7 +2,6 @@ package com.capra.article.domain.bo;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
-import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 创建文章bo类
@@ -21,11 +20,6 @@ public class CreateArticleBO {
      * 分组id
      */
     private Long groupId;
-
-    /**
-     * 文章文件
-     */
-    private MultipartFile file;
 
     /**
      * 作者id
