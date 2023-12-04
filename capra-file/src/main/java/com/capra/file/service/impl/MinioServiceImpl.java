@@ -1,6 +1,5 @@
 package com.capra.file.service.impl;
 
-import cn.hutool.core.util.IdUtil;
 import com.capra.api.domain.request.MinioOperateRequest;
 import com.capra.api.domain.request.MinioUploadRequest;
 import com.capra.core.constant.MinioBucketConstant;
@@ -49,15 +48,13 @@ public class MinioServiceImpl implements MinioService {
     @Override
     public String upload(MinioUploadRequest minioUploadRequest){
         MultipartFile file = minioUploadRequest.getFile();
-        String originalFilename = file.getOriginalFilename();
-        if(Objects.isNull(originalFilename)){
+        String filename = file.getOriginalFilename();
+        if(Objects.isNull(filename)){
             throw new ServiceException("文件名为空");
         }
-        // 获取文件名
-        String fileName = IdUtil.randomUUID() + originalFilename.substring(originalFilename.indexOf("."));
         // 根据年月分
         String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM"));
-        String uri = date + "/" + IdUtil.randomUUID() + fileName;
+        String uri = date + "/" + filename;
         try {
             minioClient.putObject(PutObjectArgs.builder()
                     .bucket(minioUploadRequest.getBucketName())
