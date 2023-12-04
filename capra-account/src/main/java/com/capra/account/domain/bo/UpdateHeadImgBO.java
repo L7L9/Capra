@@ -20,4 +20,9 @@ public class UpdateHeadImgBO {
      * 图片文件
      */
     private MultipartFile file;
+
+    /**
+     * 用户名
+     */
+    private String username;
 }
