@@ -48,13 +48,12 @@ public class MinioServiceImpl implements MinioService {
     @Override
     public String upload(MinioUploadRequest minioUploadRequest){
         MultipartFile file = minioUploadRequest.getFile();
-        String filename = file.getOriginalFilename();
-        if(Objects.isNull(filename)){
+        if(Objects.isNull(minioUploadRequest.getFilename())){
             throw new ServiceException("文件名为空");
         }
         // 根据年月分
         String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM"));
-        String uri = date + "/" + filename;
+        String uri = date + "/" + minioUploadRequest.getFilename();
         try {
             minioClient.putObject(PutObjectArgs.builder()
                     .bucket(minioUploadRequest.getBucketName())
