@@ -15,7 +15,6 @@ public interface ArticleService {
      *
      * @param createArticleBO 创建文章bo类
      * @return 成功返回true
-     * @throws IOException 文件上传异常
      */
-    Boolean createArticle(CreateArticleBO createArticleBO) throws IOException;
+    Boolean createArticle(CreateArticleBO createArticleBO);
 }

@@ -31,7 +31,7 @@ public class ArticleController {
      * @return 成功返回ture
      */
     @PostMapping
-    public CommonResult<Boolean> createArticle(@RequestBody CreateArticleDTO createArticleDTO, HttpServletRequest request) throws IOException {
+    public CommonResult<Boolean> createArticle(@RequestBody CreateArticleDTO createArticleDTO, HttpServletRequest request){
         String token = request.getHeader(HeaderConstant.TOKEN_HEADER);
         CreateArticleBO createArticleBO = new CreateArticleBO()
                 .setTitle(createArticleDTO.getTitle())
