@@ -11,4 +11,9 @@ public class MinioBucketConstant {
      * 文章类型的文件桶
      */
     public static final String ARTICLE = "capra-article";
+
+    /**
+     * 图片类型的文件桶
+     */
+    public static final String PICTURE = "capra-picture";
 }
