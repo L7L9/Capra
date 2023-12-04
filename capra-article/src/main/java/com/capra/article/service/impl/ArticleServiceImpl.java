@@ -48,6 +48,7 @@ public class ArticleServiceImpl implements ArticleService {
 
         // 上传文件
         MinioUploadRequest request = new MinioUploadRequest();
+        request.setFilename(fileName);
         request.setFile(file);
         request.setBucketName(MinioBucketConstant.ARTICLE);
         RemoteResult<String> result = fileClient.upload(request);
