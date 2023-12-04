@@ -8,7 +8,11 @@ import com.capra.account.domain.vo.UserMessageVO;
 import com.capra.account.mapper.UserMapper;
 import com.capra.account.service.UserService;
 import com.capra.account.utils.ImgUtils;
+import com.capra.api.client.FileClient;
+import com.capra.api.domain.request.MinioUploadRequest;
 import com.capra.api.domain.request.RegisterRequest;
+import com.capra.api.result.RemoteResult;
+import com.capra.core.constant.MinioBucketConstant;
 import com.capra.core.exception.DaoException;
 import com.capra.core.exception.ServiceException;
 import com.capra.core.exception.SystemException;
@@ -27,6 +31,9 @@ import java.util.Objects;
 public class UserServiceImpl implements UserService {
     @Resource
     private UserMapper userMapper;
+
+    @Resource
+    private FileClient fileClient;
 
     @Override
     public User getUserInfo(String username) {
@@ -98,8 +105,11 @@ public class UserServiceImpl implements UserService {
         if(!ImgUtils.checkType(file)){
             throw new ServiceException("文件类型错误,请重新上传");
         }
-        String encodeData = ImgUtils.toBase64(file);
-        if(userMapper.updateById(new User().setId(updateHeadImgBO.getId()).setHeadImg(encodeData)) != 1){
+
+        String filename = updateHeadImgBO.getUsername() + "#headImg";
+        // 上传图片
+        RemoteResult<String> result = fileClient.upload(new MinioUploadRequest().setFile(file).setBucketName(MinioBucketConstant.PICTURE).setFilename(filename));
+        if(userMapper.updateById(new User().setId(updateHeadImgBO.getId()).setHeadImg(result.getData())) != 1){
             throw new DaoException("数据库异常");
         }
 
