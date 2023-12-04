@@ -10,6 +10,8 @@ import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+
 /**
  * 文章请求
  * @author lql
@@ -29,11 +31,10 @@ public class ArticleController {
      * @return 成功返回ture
      */
     @PostMapping
-    public CommonResult<Boolean> createArticle(@RequestBody CreateArticleDTO createArticleDTO, HttpServletRequest request){
+    public CommonResult<Boolean> createArticle(@RequestBody CreateArticleDTO createArticleDTO, HttpServletRequest request) throws IOException {
         String token = request.getHeader(HeaderConstant.TOKEN_HEADER);
         CreateArticleBO createArticleBO = new CreateArticleBO()
                 .setTitle(createArticleDTO.getTitle())
-                .setFile(createArticleDTO.getFile())
                 .setGroupId(createArticleDTO.getGroupId())
                 .setAuthorId(JwtUtils.getUserId(token))
                 .setAuthorName(JwtUtils.getUsername(token));
