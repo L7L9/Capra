@@ -1,5 +1,6 @@
 package com.capra.article.service.impl;
 
+import cn.hutool.core.util.IdUtil;
 import com.capra.api.client.FileClient;
 import com.capra.api.constant.RemoteResultConstant;
 import com.capra.api.domain.request.MinioUploadRequest;
@@ -36,9 +37,10 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Boolean createArticle(CreateArticleBO createArticleBO){
+        String fileName = createArticleBO.getTitle() + "#" + IdUtil.randomUUID();
+
         // 创建空markdown文件
-        MultipartFile file = new MarkdownFile(
-                createArticleBO.getTitle(), new ByteArrayInputStream(StringUtils.EMPTY.getBytes(StandardCharsets.UTF_8)));
+        MultipartFile file = new MarkdownFile(fileName, new ByteArrayInputStream(StringUtils.EMPTY.getBytes(StandardCharsets.UTF_8)));
 
         // 上传文件
         MinioUploadRequest request = new MinioUploadRequest();
