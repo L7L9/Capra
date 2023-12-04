@@ -1,6 +1,7 @@
 package com.capra.file.config;
 
 import io.minio.MinioClient;
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
  * @author lql
  * @date 2023/11/27
  */
+@Data
 @Configuration
 @ConfigurationProperties(prefix = "minio")
 public class MinioConfig {
