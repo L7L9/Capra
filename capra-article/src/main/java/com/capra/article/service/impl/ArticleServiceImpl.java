@@ -37,6 +37,10 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Boolean createArticle(CreateArticleBO createArticleBO){
+        if(articleMetadataMapper.existsByTitleAndAuthorId(createArticleBO.getTitle(), createArticleBO.getAuthorId())){
+            throw new ServiceException("文章题目重复");
+        }
+
         String fileName = createArticleBO.getTitle() + "#" + IdUtil.randomUUID();
 
         // 创建空markdown文件
