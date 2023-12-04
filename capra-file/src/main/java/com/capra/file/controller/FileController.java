@@ -6,6 +6,7 @@ import com.capra.api.domain.request.MinioUploadRequest;
 import com.capra.api.result.RemoteResult;
 import com.capra.file.service.MinioService;
 import jakarta.annotation.Resource;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -20,8 +21,8 @@ public class FileController {
     private MinioService fileService;
 
     @InnerCall
-    @PostMapping
-    public RemoteResult<String> upload(@RequestBody MinioUploadRequest minioUploadRequest) {
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public RemoteResult<String> upload(MinioUploadRequest minioUploadRequest) {
         return RemoteResult.successWithDetail("文件上传成功", fileService.upload(minioUploadRequest));
     }
 
