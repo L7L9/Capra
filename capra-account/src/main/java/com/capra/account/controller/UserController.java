@@ -74,9 +74,11 @@ public class UserController {
      */
     @PostMapping("/center/head-img")
     public CommonResult<Boolean> updateHeadImg(@RequestParam("file") MultipartFile imgFile){
+        String token = request.getHeader(HeaderConstant.TOKEN_HEADER);
         UpdateHeadImgBO updateHeadImgBO = new UpdateHeadImgBO();
-        updateHeadImgBO.setId(JwtUtils.getUserId(request.getHeader(HeaderConstant.TOKEN_HEADER)));
+        updateHeadImgBO.setId(JwtUtils.getUserId(token));
         updateHeadImgBO.setFile(imgFile);
+        updateHeadImgBO.setUsername(JwtUtils.getUsername(token));
         return CommonResult.successWithDetail("修改成功",userService.updateHeadImg(updateHeadImgBO));
     }
 
