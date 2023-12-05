@@ -6,7 +6,10 @@ import com.capra.auth.service.AuthService;
 import com.capra.core.result.CommonResult;
 import com.capra.security.service.TokenService;
 import jakarta.annotation.Resource;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 账号api
