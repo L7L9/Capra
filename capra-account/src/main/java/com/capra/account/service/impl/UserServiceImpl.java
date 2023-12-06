@@ -105,8 +105,7 @@ public class UserServiceImpl implements UserService {
         if(!ImgUtils.checkType(file)){
             throw new ServiceException("文件类型错误,请重新上传");
         }
-
-        String filename = updateHeadImgBO.getUsername() + "#headImg";
+        String filename = updateHeadImgBO.getUsername() + "#headImg" + ImgUtils.getType(file);
         // 上传图片
         RemoteResult<String> result = fileClient.upload(new MinioUploadRequest().setFile(file).setBucketName(MinioBucketConstant.PICTURE).setFilename(filename));
         if(userMapper.updateById(new User().setId(updateHeadImgBO.getId()).setHeadImg(result.getData())) != 1){
