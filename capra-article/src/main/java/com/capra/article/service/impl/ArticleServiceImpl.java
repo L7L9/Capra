@@ -41,11 +41,10 @@ public class ArticleServiceImpl implements ArticleService {
             throw new ServiceException("文章题目重复");
         }
 
-        String fileName = createArticleBO.getTitle() + "#" + IdUtil.randomUUID();
+        String fileName = createArticleBO.getTitle() + "#" + IdUtil.randomUUID() + MarkdownFile.FILE_SUFFIX;
 
         // 创建空markdown文件
         MultipartFile file = new MarkdownFile(fileName, new ByteArrayInputStream(StringUtils.EMPTY.getBytes(StandardCharsets.UTF_8)));
-
         // 上传文件
         MinioUploadRequest request = new MinioUploadRequest();
         request.setFilename(fileName);
