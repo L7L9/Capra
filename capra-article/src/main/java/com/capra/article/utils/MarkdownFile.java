@@ -21,7 +21,7 @@ public class MarkdownFile implements MultipartFile {
     /**
      * markdown文件名后缀
      */
-    private final static String FILE_SUFFIX = "md";
+    public final static String FILE_SUFFIX = ".md";
 
     /**
      * 文件名
@@ -38,7 +38,7 @@ public class MarkdownFile implements MultipartFile {
      * @param inputStream 输入流
      */
     public MarkdownFile(String name, InputStream inputStream) {
-        this.name = name + "." + FILE_SUFFIX;
+        this.name = name + FILE_SUFFIX;
         this.inputStream = inputStream;
     }
 
