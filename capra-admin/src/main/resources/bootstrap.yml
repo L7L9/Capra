@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: capra-admin
+  profiles:
+    active: dev
