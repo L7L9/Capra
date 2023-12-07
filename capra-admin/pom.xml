@@ -26,5 +26,9 @@
             <groupId>com.capra</groupId>
             <artifactId>capra-common-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.capra</groupId>
+            <artifactId>capra-common-mysql</artifactId>
+        </dependency>
     </dependencies>
 </project>
