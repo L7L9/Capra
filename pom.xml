@@ -165,6 +165,7 @@
         <module>capra-api</module>
         <module>capra-file</module>
         <module>capra-article</module>
+        <module>capra-admin</module>
     </modules>
 
     <build>
