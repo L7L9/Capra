@@ -1,5 +1,6 @@
 package com.capra.admin.controller;
 
+import com.capra.admin.domain.po.Permission;
 import com.capra.admin.domain.po.Role;
 import com.capra.admin.service.RoleService;
 import com.capra.core.result.CommonResult;
@@ -15,7 +16,7 @@ import java.util.List;
  * @date 2023/12/07
  */
 @RestController
-@RequestMapping("role")
+@RequestMapping("/role")
 public class RoleController {
     @Resource
     private RoleService roleService;
@@ -38,5 +39,10 @@ public class RoleController {
     @GetMapping
     public CommonResult<List<Role>> getAllRole(){
         return CommonResult.successWithDetail("获取成功",roleService.getAllRole());
+    }
+
+    @GetMapping("/{roleId}")
+    public CommonResult<List<Permission>> getRolePermissions(@PathVariable Long roleId){
+        return CommonResult.successWithDetail("获取成功",roleService.getRolePermissions(roleId));
     }
 }
