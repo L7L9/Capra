@@ -26,9 +26,4 @@ public class Role {
      * 角色名
      */
     private String name;
-
-    /**
-     * 角色拥有的权限资源路径数组
-     */
-    private Permission[] permissions;
 }
