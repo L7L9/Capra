@@ -1,12 +1,12 @@
 package com.capra.admin.controller;
 
+import com.capra.admin.domain.po.Role;
 import com.capra.admin.service.RoleService;
 import com.capra.core.result.CommonResult;
 import jakarta.annotation.Resource;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 角色controller
@@ -29,5 +29,14 @@ public class RoleController {
     @PostMapping
     public CommonResult<Boolean> addRole(@RequestParam String name){
         return CommonResult.successWithDetail("添加角色成功",roleService.addRole(name));
+    }
+
+    /**
+     * 获取所有角色
+     * @return 返回角色列表
+     */
+    @GetMapping
+    public CommonResult<List<Role>> getAllRole(){
+        return CommonResult.successWithDetail("获取成功",roleService.getAllRole());
     }
 }
