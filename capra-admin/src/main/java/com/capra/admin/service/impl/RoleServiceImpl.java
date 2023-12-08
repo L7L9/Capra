@@ -8,6 +8,8 @@ import com.capra.core.exception.ServiceException;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * role服务接口是西安类
  * @author lql
@@ -30,5 +32,10 @@ public class RoleServiceImpl implements RoleService {
         }
 
         return true;
+    }
+
+    @Override
+    public List<Role> getAllRole() {
+        return roleMapper.selectAll();
     }
 }
