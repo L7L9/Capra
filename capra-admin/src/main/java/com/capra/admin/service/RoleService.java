@@ -1,5 +1,6 @@
 package com.capra.admin.service;
 
+import com.capra.admin.domain.po.Permission;
 import com.capra.admin.domain.po.Role;
 
 import java.util.List;
@@ -23,4 +24,11 @@ public interface RoleService {
      * @return 返回role列表
      */
     List<Role> getAllRole();
+
+    /**
+     * 获取角色id对应的所有权限
+     * @param roleId 角色id
+     * @return 权限列表
+     */
+    List<Permission> getRolePermissions(Long roleId);
 }
